@@ -1,90 +1,176 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<title>Chinachu</title>
-	
-	<link rel="stylesheet" href="stylesheets/styles.css">
-	<link rel="stylesheet" href="stylesheets/pygment_trac.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
-<body>
-	<div class="wrapper">
-		<header>
-			<h1>Chinachu <small style="color:red">beta</small></h1>
-			<p>デジタル放送番組のLinux向けEPG自動録画予約システム</p>
-			
-			<p class="view"><a href="https://github.com/kanreisa/Chinachu">View the Project on GitHub <small>kanreisa/Chinachu</small></a></p>
-			
-			
-			<ul>
-			<li><a href="https://github.com/kanreisa/Chinachu/zipball/master">Download <strong>ZIP File</strong></a></li>
-			<li><a href="https://github.com/kanreisa/Chinachu/tarball/master">Download <strong>TAR Ball</strong></a></li>
-			<li><a href="https://github.com/kanreisa/Chinachu">View On <strong>GitHub</strong></a></li>
-			</ul>
-		</header>
-		<section>
-			<p><code>Chinachu</code>は、Linux向けに作られた、デジタル放送番組をEPG情報を元に自動で録画予約するためのシステムです。
-			<code>Node.js</code>、<code>epgdump</code>等を利用して録画予約の完全自動化及びリアルタイムWUIを実現しています。
-			<code>Node.js</code>を利用するリアルタイムWUIは、ウェブサーバーとして独立していますので、<code>Apache</code>等は不要です。
-			そしてDBMSは利用せず、軽快に動作します。必要なデーターはすべて人間にも理解可能なjson形式で保存されます。</p>
-			
-			<p><code>Node.js</code>は<code>Chinachu</code>のインストーラーが自身専用にビルドするので、事前環境準備は不要です。</p>
-			
-			<h3>Features</h3>
-			
-			<ul>
-				<li>Fully-automated Reserving by EPG and Rule</li>
-				<li>HTTP Streaming, HTTP Live Streaming (FFmpeg live transcoding)</li>
-				<li>Partial Supports ISDB / DVB</li>
-				<li>Multi Track Recording (Unlimited Tuners)</li>
-				<li>WUI (Supports IPv6, Auth, TLS)</li>
-				<li>REST API</li>
-				<li>CLI</li>
-				<li>IRC Bot (Experimental)</li>
-			</ul>
-			
-			<h3>Documentation</h3>
-			
-			<p><a href="https://github.com/kanreisa/Chinachu/wiki">https://github.com/kanreisa/Chinachu/wiki</a></p>
-			
-			<h3>Disclaimer</h3>
-			
-			<p>Chinachuは学術研究目的で開発された試験的なシステムです。全ての動作において無保証です。
-			このシステムによる全ての結果に対して当プロジェクトは一切の責任を持ちません。</p>
-			
-			<p>このオープンソースソフトウェアは主にデジタル放送受信装置開発者を対象にしているものです。
-			ライセンスに従う限りどなたでも自由にソースコードを利用・改変し組込開発等を実施することができます。</p>
-			
-			<h3>Support or Contact</h3>
-			
-			<p>For anything non-support related you can contact me at <script>document.write('re');</script>@pixely.jp or <a href="https://twitter.com/kanreisa" class="user-mention">@kanreisa</a>. I don't have the time to answer every support related email individually.</p>
-			
-			<h3>Licenses</h3>
-			
-			<p>Code licensed under the MIT-License. Documentation licensed under CC BY 3.0.</p>
-			<p>Copyright (c) 2012 Yuki KAN and Chinachu Project Contributors
-				<a href="http://chinachu.akkar.in/">http://chinachu.akkar.in/</a></p>
-		</section>
-		<footer>
-			<p>This project is maintained by <a href="https://github.com/kanreisa">kanreisa</a></p>
-			<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-		</footer>
-	</div>
-	<script src="javascripts/scale.fix.js"></script>
-	<script type="text/javascript">
-		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-		try {
-			var pageTracker = _gat._getTracker("UA-4856278-12");
-			pageTracker._trackPageview();
-		} catch(err) {}
-	</script>
-</body>
+ <head>
+
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+  <meta name="generator" content="5.0.704.218"/>
+  <title>Chinachu</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/site_global.css?529173654"/>
+  <link rel="stylesheet" type="text/css" href="css/index.css?203187728" id="pagesheet"/>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   document.documentElement.className += ' js';
+var __adobewebfontsappname__ = "muse";
+</script>
+  <!-- JS includes -->
+  <script type="text/javascript">
+   document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/alice:n4:all;asap:n4:all.js" type="text/javascript">\x3C/script>');
+</script>
+    <!--custom head HTML-->
+  <style>
+body { overflow-x: hidden; }
+</style>
+ </head>
+ <body>
+
+  <div class="clearfix" id="page"><!-- column -->
+   <div class="position_content" id="page_position_content">
+    <div class="clearfix colelem" id="pu69"><!-- group -->
+     <div class="browser_width grpelem" id="u69"><!-- group -->
+      <div class="clearfix" id="u69_align_to_page">
+       <div class="clearfix grpelem" id="u74-4"><!-- content -->
+        <p>Chinachu</p>
+       </div>
+       <div class="clearfix grpelem" id="u93-4"><!-- content -->
+        <p>beta</p>
+       </div>
+       <a class="nonblock nontext clearfix grpelem" id="u104" href="https://github.com/kanreisa/Chinachu/wiki/Installation"><!-- group --><div class="clearfix grpelem" id="u105-6"><!-- content --><p id="u105-2">最新版をインストール</p><p id="u105-4">Linux専用 / Debian 推奨</p></div></a>
+      </div>
+     </div>
+     <img class="grpelem" id="u91-4" src="images/u91-4.png" alt="世界で一番キュートな録画システム" width="189" height="12"/><!-- rasterized frame -->
+     <div id="u218"><!-- custom html -->
+      <a href="https://github.com/kanreisa/Chinachu"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+</div>
+    </div>
+    <div class="clearfix colelem" id="pu108"><!-- group -->
+     <div class="grpelem" id="u108"><!-- custom html -->
+      <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=kanreisa&amp;repo=Chinachu&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80px" height="20px"></iframe>
+</div>
+     <div class="grpelem" id="u110"><!-- custom html -->
+      <iframe allowtransparency="true" frameborder="0" scrolling="no" src="https://platform.twitter.com/widgets/follow_button.html#id=twitter-widget-1&amp;lang=en&amp;screen_name=chinachu_rec&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 160px; height: 20px;"></iframe>
+</div>
+     <div class="grpelem" id="u112"><!-- custom html -->
+      <iframe allowtransparency="true" frameborder="0" scrolling="no" src="https://platform.twitter.com/widgets/tweet_button.html#count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fchinachu.akkar.in%2F&amp;related=mdo%3ACreator%20of%20Twitter%20Bootstrap&amp;size=m&amp;text=Chinachu&amp;url=http%3A%2F%2Fchinachu.akkar.in%2F&amp;via=chinachu_rec" class="twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 100px; height: 20px;"></iframe>
+</div>
+     <div class="grpelem" id="u114"><!-- custom html -->
+      <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fchinachu.akkar.in%2F&amp;width=450&amp;height=21&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=239129829438266" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:20px;" allowTransparency="true"></iframe>
+</div>
+    </div>
+    <div class="PamphletWidget clearfix colelem" id="pamphletu116"><!-- group -->
+     <div class="popup_anchor" id="u126popup">
+      <div class="ContainerGroup clearfix" id="u126"><!-- stack box -->
+       <div class="Container clearfix grpelem" id="u127"><!-- group -->
+        <div class="grpelem" id="u189"><!-- image -->
+         <img class="block" id="u189_img" src="images/01.png" alt="" width="480" height="320"/>
+        </div>
+        <img class="grpelem" id="u128-7" src="images/u128-7.png" alt="全く新しいインターフェースをウェブで実現 LinuxにDVRを構築します。モニターは要りません。ウェブインターフェースを使えば家中どこからでもアクセスできます。" width="167" height="190"/><!-- rasterized frame -->
+       </div>
+       <div class="Container invi clearfix grpelem" id="u137"><!-- group -->
+        <div class="grpelem" id="u195"><!-- image -->
+         <img class="block" id="u195_img" src="images/02.png" alt="" width="480" height="320"/>
+        </div>
+        <img class="grpelem" id="u194-7" src="images/u194-7.png" alt="オープンな最新技術で全ての機能を実現 あらゆるオープンソースソフトウェアを活用して作られています。もちろんChinachuもオープンです。どなたでも開発や議論に参加できます。" width="168" height="184"/><!-- rasterized frame -->
+       </div>
+       <div class="Container invi clearfix grpelem" id="u132"><!-- group -->
+        <div class="grpelem" id="u200"><!-- image -->
+         <img class="block" id="u200_img" src="images/03.png" alt="" width="480" height="320"/>
+        </div>
+        <img class="grpelem" id="u206-7" src="images/u206-7.png" alt="リアルタイムWeb UIの録画システムは、Chinachuだけ。 Ajaxによるポーリングやロングポーリングではなく、WebSocketを用いた本当のリアルタイム体験を提供します。" width="173" height="190"/><!-- rasterized frame -->
+       </div>
+      </div>
+     </div>
+     <div class="ThumbGroup clearfix grpelem" id="u117"><!-- none box -->
+      <div class="popup_anchor">
+       <div class="Thumb popup_element clearfix" id="u120"><!-- group -->
+        <div class="clearfix grpelem" id="u121-4"><!-- content -->
+         <p>革新的。</p>
+        </div>
+       </div>
+      </div>
+      <div class="popup_anchor">
+       <div class="Thumb popup_element clearfix" id="u122"><!-- group -->
+        <div class="clearfix grpelem" id="u123-4"><!-- content -->
+         <p>オープン。</p>
+        </div>
+       </div>
+      </div>
+      <div class="popup_anchor">
+       <div class="Thumb popup_element clearfix" id="u118"><!-- group -->
+        <div class="clearfix grpelem" id="u119-4"><!-- content -->
+         <p>リアルタイム。</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="browser_width colelem" id="u106"><!-- simple frame --></div>
+    <div class="browser_width colelem" id="u207"><!-- group -->
+     <div class="clearfix" id="u207_align_to_page">
+      <div class="clearfix grpelem" id="u216-8"><!-- content -->
+       <p id="u216-2">Chinachuは、Linuxで動作する、デジタル放送番組向けのEPG録画予約管理システムです。 細かい予約ルールによる録画予約の完全自動化や、socket.ioによるリアルタイム性の高いWUIアプリを実現しています。 REST APIとWUIは、ウェブサーバーとして単独で動作しますので、ApacheやPHP等は不要です。 そしてMySQL等のDBMSは利用せず、身軽に動作します。必要なデーターはすべて人間にも理解可能なJSON形式で保存されます。</p>
+       <p id="u216-3">&nbsp;</p>
+       <p id="u216-5">システムはNodeプラットフォーム上で動作しますが、インストーラーがChinachuローカルに自動構築するので、Linuxの知識だけで導入することができます。</p>
+       <p>&nbsp;</p>
+      </div>
+      <div class="clearfix grpelem" id="u217-23"><!-- content -->
+       <p id="u217-2">主な機能</p>
+       <p id="u217-3">&nbsp;</p>
+       <p id="u217-5">・EPGドリブン</p>
+       <p id="u217-7">・ルールによる完全自動予約</p>
+       <p id="u217-9">・HTTPストリーミング、Apple HTTP Live Streaming</p>
+       <p id="u217-11">・国内外ほとんどの放送波に対応</p>
+       <p id="u217-13">・チューナー数無制限／複数同時録画</p>
+       <p id="u217-15">・IPv6、TLS通信サポート</p>
+       <p id="u217-17">・REST API</p>
+       <p id="u217-19">・CLI</p>
+       <p id="u217-21">・IRC Bot</p>
+      </div>
+     </div>
+    </div>
+    <div class="clearfix colelem" id="u220-12"><!-- content -->
+     <p id="u220-2">Chinachu is EXPERIMENTAL system developed for academic research. it's open&#45;source software with ABSOLUTELY NO WARRANTY.</p>
+     <p id="u220-3">&nbsp;</p>
+     <p id="u220-5">Chinachuは学術研究目的で開発された試験的なシステムです。全ての動作において無保証です。 このシステムによる全ての結果に対して当プロジェクトは一切の責任を持ちません。 このオープンソースソフトウェアは主にデジタル放送受信装置開発者を対象にしているものです。 ライセンスに従う限りどなたでも自由にソースコードを利用・改変し組込開発等を実施することができます。 また、これには実際の放送電波を受信するための機能や暗号化されたデータを取り扱う機能等は全く有しておらず、 実運用を実施するには対象の利用信号における規定を元に別途用意する必要があります。</p>
+     <p id="u220-6">&nbsp;</p>
+     <p id="u220-10">For anything non&#45;support related you can contact me at <span id="u220-8">@Chinachu_REC</span>. I don't have the time to answer every support related email individually.</p>
+    </div>
+    <div class="clearfix colelem" id="pu209"><!-- group -->
+     <div class="browser_width grpelem" id="u209"><!-- group -->
+      <div class="clearfix" id="u209_align_to_page">
+       <a class="nonblock nontext grpelem" id="u210-4" href="http://px.mw/rec/"><!-- rasterized frame --><img id="u210-4_img" src="images/u210-4.png" alt="七森中録画研究会" width="112" height="15"/></a>
+      </div>
+     </div>
+     <div class="pointer_cursor ts clearfix grpelem" id="u211-5"><!-- content -->
+      <a class="block" href="https://github.com/kanreisa"></a>
+      <p><a class="nonblock" href="http://px.mw/"><span id="u211">©れいさ</span></a></p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- JS includes -->
+  <script type="text/javascript">
+   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn2.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+  <script type="text/javascript">
+   window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+  <script src="scripts/museutils.js?3992981318" type="text/javascript"></script>
+  <script src="scripts/jquery.tobrowserwidth.js?317228635" type="text/javascript"></script>
+  <script src="scripts/webpro.js?197321703" type="text/javascript"></script>
+  <script src="scripts/musewpslideshow.js?4283859919" type="text/javascript"></script>
+  <script src="scripts/jquery.museoverlay.js?3836522771" type="text/javascript"></script>
+  <script src="scripts/touchswipe.js?4156838003" type="text/javascript"></script>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   $(document).ready(function() { try {
+Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+$('.browser_width').toBrowserWidth();/* browser width elements */
+Muse.Utils.prepHyperlinks();/* body */
+Muse.Utils.initWidget('#pamphletu116', function(elem) { new WebPro.Widget.ContentSlideShow(elem, {contentLayout_runtime:'stack',event:'click',deactivationEvent:'none',autoPlay:false,displayInterval:3000,transitionStyle:'fading',transitionDuration:500,hideAllContentsFirst:false,shuffle:false,enableSwipe:true}); });/* #pamphletu116 */
+Muse.Utils.showWidgetsWhenReady();/* body */
+Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+} catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
+</script>
+   </body>
 </html>
