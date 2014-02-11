@@ -1,0 +1,10 @@
+node_modules	/usr/share/chinachu/
+app-operator.js	/usr/share/chinachu/
+test	/usr/share/chinachu/
+app-wui.js	/usr/share/chinachu/
+web	/usr/share/chinachu/
+package.json	/usr/share/chinachu/
+chinachu	/usr/bin/
+api	/usr/share/chinachu/
+app-cli.js	/usr/share/chinachu/
+app-scheduler.js	/usr/share/chinachu/

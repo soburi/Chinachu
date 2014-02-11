@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+basedir = $(CURDIR)/debian/chinachu
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+override_dh_auto_clean:
+	$(MAKE) -C daemonizer clean
+	dh_auto_clean
+
+override_dh_auto_build:
+	$(MAKE) -C daemonizer
+
+override_dh_auto_install:
+	$(MAKE) -C daemonizer DESTDIR=$(CURDIR)/debian/tmp PREFIX=/usr install
+	dh_install -Xprototype.js -XLICENSE
+	mkdir -p -m 744 $(basedir)/etc/chinachu/
+	#install -m 600 config.sample.json $(basedir)/etc/chinachu/config.json
+	install -m 600 debian/config.maintainer.json $(basedir)/etc/chinachu/config.json
+	install -m 644 web/lib/ace/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.ace
+	install -m 644 web/lib/flagrate/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.fragrate
+
+%:
+	dh $@ --with quilt
+

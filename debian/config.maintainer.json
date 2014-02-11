@@ -1,0 +1,65 @@
+{
+  "recordedDir" : "./recorded/",
+  "temporaryDir": "/tmp/",
+  "varDir" : "/var/lib/chinachu",
+  "wuiPidFile" : "/var/run/chinachu/chinachu-wui.pid",
+  "operatorPidFile" : "/var/run/chinachu/chinachu-operator.pid",
+  
+  "wuiUsers": [
+    "akari:bakuhatsu"
+  ],
+  
+  "wuiPort"        : 10772,
+  "wuiHost"        : "::",
+  "wuiTlsKeyPath"  : null,
+  "wuiTlsCertPath" : null,
+  "wuiOpenServer"  : false,
+  "wuiOpenPort"    : 20772,
+  "wuiPreviewer"   : true,
+  "wuiStreamer"    : true,
+  "wuiFiler"       : true,
+  "wuiConfigurator": true,
+  
+  "recordedFormat": "[<date:yymmdd-HHMM>][<type><channel>][<tuner>]<title>.m2ts",
+  
+  "tuners": [
+    {
+      "name"        : "DVB-S1",
+      "isScrambling": false,
+      "types"       : [ "BS", "CS" ],
+      "command"     : "recpt1 --device /dev/dvb/adapter0 --b25 --strip --sid <sid> <channel> - -"
+    },
+    {
+      "name"        : "DVB-S2",
+      "isScrambling": false,
+      "types"       : [ "BS", "CS" ],
+      "command"     : "recpt1 --device /dev/dvb/adapter2 --b25 --strip --sid <sid> <channel> - -"
+    },
+    {
+      "name"        : "DVB-T1",
+      "isScrambling": false,
+      "types"       : [ "GR" ],
+      "command"     : "recpt1 --device /dev/dvb/adapter1 --b25 --strip --sid <sid> <channel> - -"
+    },
+    {
+      "name"        : "DVB-T2",
+      "isScrambling": false,
+      "types"       : [ "GR" ],
+      "command"     : "recpt1 --device /dev/dvb/adapter3 --b25 --strip --sid <sid> <channel> - -"
+    }
+  ],
+  
+  "channels": [
+    { "type": "GR", "channel": "27" },
+    { "type": "GR", "channel": "26" },
+    { "type": "GR", "channel": "25" },
+    { "type": "GR", "channel": "24" },
+    { "type": "GR", "channel": "22" },
+    { "type": "GR", "channel": "23" },
+    { "type": "GR", "channel": "21" },
+    { "type": "GR", "channel": "16" },
+    { "type": "GR", "channel": "28" }
+  ]
+
+
+}

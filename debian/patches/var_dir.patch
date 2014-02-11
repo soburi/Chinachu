@@ -1,0 +1,531 @@
+--- a/app-cli.js
++++ b/app-cli.js
+@@ -5,12 +5,27 @@
+  *  http://chinachu.akkar.in/
+ **/
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RULES_FILE          = __dirname + '/rules.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var SCHEDULE_DATA_FILE  = __dirname + '/data/schedule.json';
+-var RECORDING_DATA_FILE = __dirname + '/data/recording.json';
+-var RECORDED_DATA_FILE  = __dirname + '/data/recorded.json';
++var VAR_DIR = __dirname + '/';
++var CONFIG_FILE = __dirname + '/config.json';
++
++var config = null;
++try {
++        config = require(CONFIG_FILE);
++}
++catch(e) {
++        CONFIG_FILE = '/etc/chinachu/config.json';
++        config = require(CONFIG_FILE);
++}
++
++if( typeof config.varDir !== "undefined" ) {
++        VAR_DIR = (config.varDir + '/').replace(/\/+/g, '/');
++}
++
++var RULES_FILE          = VAR_DIR + '/rules.json';
++var RESERVES_DATA_FILE  = VAR_DIR + '/data/reserves.json';
++var SCHEDULE_DATA_FILE  = VAR_DIR + '/data/schedule.json';
++var RECORDING_DATA_FILE = VAR_DIR + '/data/recording.json';
++var RECORDED_DATA_FILE  = VAR_DIR + '/data/recorded.json';
+ 
+ // 標準モジュールのロード
+ var fs            = require('fs');
+@@ -19,7 +34,7 @@
+ var child_process = require('child_process');
+ 
+ // ディレクトリチェック
+-if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
++if (!fs.existsSync(VAR_DIR + './data/') || !fs.existsSync(VAR_DIR + './log/') || !fs.existsSync(__dirname + '/web/')) {
+ 	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
+ 	process.exit(1);
+ }
+--- a/app-wui.js
++++ b/app-wui.js
+@@ -8,15 +8,34 @@
+ /*global gc */
+ 'use strict';
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RULES_FILE          = __dirname + '/rules.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var SCHEDULE_DATA_FILE  = __dirname + '/data/schedule.json';
+-var RECORDING_DATA_FILE = __dirname + '/data/recording.json';
+-var RECORDED_DATA_FILE  = __dirname + '/data/recorded.json';
+-var OPERATOR_LOG_FILE   = __dirname + '/log/operator';
+-var WUI_LOG_FILE        = __dirname + '/log/wui';
+-var SCHEDULER_LOG_FILE  = __dirname + '/log/scheduler';
++var WUI_PIDFILE      = '/var/run/chinachu/chinachu-wui.pid';
++var OPERATOR_PIDFILE = '/var/run/chinachu/chinachu-operator.pid';
++
++var VAR_DIR     = __dirname + '/';
++var CONFIG_FILE = __dirname + '/config.json';
++
++var config = null;
++try {
++        config = require(CONFIG_FILE);
++}
++catch(e) {
++        CONFIG_FILE = '/etc/chinachu/config.json';
++        config = require(CONFIG_FILE);
++}
++
++if( typeof config.varDir !== "undefined" ) {
++        VAR_DIR = (config.varDir + '/').replace(/\/+/g, '/');
++}
++
++
++var RULES_FILE          = VAR_DIR + '/rules.json';
++var RESERVES_DATA_FILE  = VAR_DIR + '/data/reserves.json';
++var SCHEDULE_DATA_FILE  = VAR_DIR + '/data/schedule.json';
++var RECORDING_DATA_FILE = VAR_DIR + '/data/recording.json';
++var RECORDED_DATA_FILE  = VAR_DIR + '/data/recorded.json';
++var OPERATOR_LOG_FILE   = VAR_DIR + '/log/operator';
++var WUI_LOG_FILE        = VAR_DIR + '/log/wui';
++var SCHEDULER_LOG_FILE  = VAR_DIR + '/log/scheduler';
+ 
+ // 標準モジュールのロード
+ var path          = require('path');
+@@ -30,7 +49,7 @@
+ var zlib          = require('zlib');
+ 
+ // ディレクトリチェック
+-if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
++if (!fs.existsSync(VAR_DIR + './data/') || !fs.existsSync(VAR_DIR + './log/') || !fs.existsSync(__dirname + '/web/')) {
+ 	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
+ 	process.exit(1);
+ }
+@@ -58,7 +77,7 @@
+ var emptyFunction = function () {};
+ 
+ // 設定の読み込み
+-var config = require(CONFIG_FILE);
++//var config = require(CONFIG_FILE);
+ 
+ // https or http
+ if (config.wuiTlsKeyPath && config.wuiTlsCertPath) {
+@@ -209,7 +228,7 @@
+ 		delete query._method;
+ 	}
+ 	
+-	var filename = path.join('./web/', location);
++	var filename = path.join(__dirname + '/web/', location);
+ 	
+ 	var ext = null;
+ 	if (filename.match(/[^\/]+\..+$/) !== null) {
+@@ -399,7 +418,7 @@
+ 		
+ 		if (dirs[0] === 'index.html') { return resErr(400); }
+ 		
+-		var resourceFile = './api/resource-' + dirs[0] + '.json';
++		var resourceFile = __dirname + '/api/resource-' + dirs[0] + '.json';
+ 		
+ 		if (fs.existsSync(resourceFile) === false) { return resErr(404); }
+ 		
+@@ -443,7 +462,7 @@
+ 			}
+ 			if (target.types.indexOf(ext) === -1) { return resErr(415); }
+ 			
+-			var scriptFile = './api/script-' + target.script + '.vm.js';
++			var scriptFile = __dirname + '/api/script-' + target.script + '.vm.js';
+ 			
+ 			if (fs.existsSync(scriptFile) === false) { return resErr(501); }
+ 			
+@@ -489,7 +508,8 @@
+ 					RECORDED_DATA_FILE : RECORDED_DATA_FILE,
+ 					OPERATOR_LOG_FILE  : OPERATOR_LOG_FILE,
+ 					WUI_LOG_FILE       : WUI_LOG_FILE,
+-					SCHEDULER_LOG_FILE : SCHEDULER_LOG_FILE
++					SCHEDULER_LOG_FILE : SCHEDULER_LOG_FILE,
++					CHINACHU_DIR       : __dirname
+ 				},
+ 				data: {
+ 					rules    : rules,
+@@ -503,11 +523,14 @@
+ 				setTimeout : setTimeout,
+ 				clearInterval: clearInterval,
+ 				clearTimeout : clearTimeout,
++
+ 				process: {
+-					execPath : process.execPath
++					execPath : process.execPath,
++					env      : process.env
+ 				},
+ 				
+ 				children: []
++
+ 			};
+ 			
+ 			var isClosed = false;
+@@ -814,8 +837,8 @@
+ 	
+ 	var c = chinachu.createCountdown(2, chinachu.createTimeout(processChecker, 5000));
+ 	
+-	if (fs.existsSync('/var/run/chinachu-operator.pid') === true) {
+-		fs.readFile('/var/run/chinachu-operator.pid', function (err, pid) {
++	if (fs.existsSync(OPERATOR_PIDFILE) === true) {
++		fs.readFile(OPERATOR_PIDFILE, function (err, pid) {
+ 			
+ 			if (err) { return c.tick(); }
+ 			
+@@ -843,8 +866,8 @@
+ 		c.tick();
+ 	}
+ 	
+-	if (fs.existsSync('/var/run/chinachu-wui.pid') === true) {
+-		fs.readFile('/var/run/chinachu-wui.pid', function (err, pid) {
++	if (fs.existsSync(WUI_PIDFILE) === true) {
++		fs.readFile(WUI_PIDFILE, function (err, pid) {
+ 			
+ 			if (err) { return c.tick(); }
+ 			
+--- a/chinachu
++++ b/chinachu
+@@ -41,9 +41,12 @@
+   done
+   
+   # path
++  USERNAME=chinachu
++  HOMEDIR=`grep $USERNAME < /etc/passwd | sed 's/^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):[^:]*$/\1/'`
+   CHINACHU_DIR=/usr/share/chinachu
++
+   NAVE_DIR=${CHINACHU_DIR}/.nave
+-  NODE_PATH=/usr/local/lib/node_modules/
++  NODE_PATH=${HOMEDIR}/node_modules
+   NPM_PATH=/usr/bin/npm
+   USR_DIR=${CHINACHU_DIR}/usr
+   
+@@ -51,7 +54,8 @@
+   export LD_LIBRARY_PATH=$USR_DIR/lib:$LD_LIBRARY_PATH
+   export NODE_PATH
+   
+-  cd $CHINACHU_DIR
++  #cd $CHINACHU_DIR
++  cd /var/lib/chinachu
+   
+   export CHINACHU_DIR
+   export NAVE_DIR
+@@ -595,7 +599,7 @@
+ ### END INIT INFO
+ 
+ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+-DAEMON=${CHINACHU_DIR}/chinachu
++DAEMON=/usr/bin/chinachu
+ DAEMON_OPTS="service ${name} execute"
+ NAME=chinachu-${name}
+ USER=$USER
+@@ -687,17 +691,17 @@
+   local name="$1"
+   
+   if ! [ -f "config.json" ]; then
+-    cp -v config.sample.json config.json
++    cp -v $CHINACHU_DIR/config.sample.json config.json
+   fi
+   
+   if ! [ -f "rules.json" ]; then
+-    cp -v rules.sample.json rules.json
++    cp -v $CHINACHU_DIR/rules.sample.json rules.json
+   fi
+   
+   ensure_dir log
+   ensure_dir data
+   
+-  $NODE_BIN --expose_gc app-${name}.js > /dev/stdout 2>&1 | tee -a ./log/${name} && return 0
++  $NODE_BIN --expose_gc $CHINACHU_DIR/app-${name}.js > /dev/stdout 2>&1 | tee -a ./log/${name} && return 0
+ }
+ 
+ chinachu_service_help () {
+@@ -730,11 +734,11 @@
+ }
+ 
+ chinachu_update () {
+-  $NODE_BIN app-scheduler.js "$@" > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
++  $NODE_BIN $CHINACHU_DIR/app-scheduler.js "$@" > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
+ }
+ 
+ chinachu_search () {
+-  $NODE_BIN app-cli.js -mode search "$@" && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode search "$@" && return 0
+ }
+ 
+ chinachu_reserve () {
+@@ -742,14 +746,14 @@
+     fail "Usage: reserve <pgid>"
+   fi
+   
+-  $NODE_BIN app-cli.js -mode reserve -id "$1" || fail "couldn't reserve $1"
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode reserve -id "$1" || fail "couldn't reserve $1"
+   
+   while [ 1 ]; do
+     echo -n "Run a scheduler [Y/n]? "
+     read line
+     case $line in
+       [yY])
+-        $NODE_BIN app-scheduler.js > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
++        $NODE_BIN $CHINACHU_DIR/app-scheduler.js > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
+         ;;
+       [nN])
+         echo "Ok." && return 0
+@@ -763,7 +767,7 @@
+     fail "Usage: unreserve <pgid>"
+   fi
+   
+-  $NODE_BIN app-cli.js -mode unreserve -id "$1" || fail "couldn't unreserve $1"
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode unreserve -id "$1" || fail "couldn't unreserve $1"
+ }
+ 
+ chinachu_skip () {
+@@ -771,7 +775,7 @@
+     fail "Usage: skip <pgid>"
+   fi
+ 
+-  $NODE_BIN app-cli.js -mode skip -id "$1" || fail "couldn't skip $1"
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode skip -id "$1" || fail "couldn't skip $1"
+ }
+ 
+ chinachu_unskip () {
+@@ -779,7 +783,7 @@
+     fail "Usage: unskip <pgid>"
+   fi
+ 
+-  $NODE_BIN app-cli.js -mode unskip -id "$1" || fail "couldn't skip $1"
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode unskip -id "$1" || fail "couldn't skip $1"
+ }
+ 
+ chinachu_stop () {
+@@ -787,11 +791,11 @@
+     fail "Usage: stop <pgid>"
+   fi
+   
+-  $NODE_BIN app-cli.js -mode stop -id "$1" || fail "couldn't stop $1"
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode stop -id "$1" || fail "couldn't stop $1"
+ }
+ 
+ chinachu_rule () {
+-  $NODE_BIN app-cli.js -mode rule "$@" && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode rule "$@" && return 0
+ }
+ 
+ chinachu_enrule () {
+@@ -799,7 +803,7 @@
+     fail "Usage: enrule <ruleid>"
+   fi
+   
+-  $NODE_BIN app-cli.js -mode rule -n "$1" --enable && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode rule -n "$1" --enable && return 0
+ }
+ 
+ chinachu_disrule () {
+@@ -807,7 +811,7 @@
+     fail "Usage: disrule <ruleid>"
+   fi
+   
+-  $NODE_BIN app-cli.js -mode rule -n "$1" --disable && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode rule -n "$1" --disable && return 0
+ }
+ 
+ chinachu_rmrule () {
+@@ -815,23 +819,23 @@
+     fail "Usage: rmrule <ruleid>"
+   fi
+   
+-  $NODE_BIN app-cli.js -mode rule -n "$1" --remove && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode rule -n "$1" --remove && return 0
+ }
+ 
+ chinachu_rules () {
+-  $NODE_BIN app-cli.js -mode rules "$@" && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode rules "$@" && return 0
+ }
+ 
+ chinachu_reserves () {
+-  $NODE_BIN app-cli.js -mode reserves "$@" && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode reserves "$@" && return 0
+ }
+ 
+ chinachu_recording () {
+-  $NODE_BIN app-cli.js -mode recording "$@" && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode recording "$@" && return 0
+ }
+ 
+ chinachu_recorded () {
+-  $NODE_BIN app-cli.js -mode recorded "$@" && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode recorded "$@" && return 0
+ }
+ 
+ chinachu_cleanup () {
+@@ -842,7 +846,7 @@
+     read line
+     case $line in
+       [yY])
+-        $NODE_BIN app-cli.js -mode cleanup "$@" && return 0
++        $NODE_BIN $CHINACHU_DIR/app-cli.js -mode cleanup "$@" && return 0
+         ;;
+       [nN])
+         echo "Abort." && return 0
+@@ -870,7 +874,7 @@
+ }
+ 
+ chinachu_ircbot () {
+-  $NODE_BIN app-cli.js -mode ircbot "$@" && return 0
++  $NODE_BIN $CHINACHU_DIR/app-cli.js -mode ircbot "$@" && return 0
+ }
+ 
+ chinachu_test () {
+--- a/api/script-log-stream.vm.js
++++ b/api/script-log-stream.vm.js
+@@ -4,7 +4,8 @@
+ 		return response.error(404);
+ 	}
+ 	
+-	var filename = './log/' + request.param.name;
++	var VAR_DIR = config.varDir;
++	var filename = VAR_DIR + '/log/' + request.param.name;
+ 	
+ 	if (!fs.existsSync(filename)) {
+ 		response.head(204);
+--- a/api/script-log.vm.js
++++ b/api/script-log.vm.js
+@@ -4,7 +4,8 @@
+ 		return response.error(404);
+ 	}
+ 	
+-	var filename = './log/' + request.param.name;
++	var VAR_DIR = config.varDir;
++	var filename = VAR_DIR + '/log/' + request.param.name;
+ 	
+ 	if (!fs.existsSync(filename)) {
+ 		response.head(204);
+--- a/config.sample.json
++++ b/config.sample.json
+@@ -1,6 +1,9 @@
+ {
+   "recordedDir" : "./recorded/",
+   "temporaryDir": "/tmp/",
++  "varDir" : "/var/lib/chinachu",
++  "wuiPidFile" : "/var/run/chinachu/chinachu-wui.pid",
++  "operatorPidFile" : "/var/run/chinachu/chinachu-operator.pid",
+   
+   "wuiUsers": [
+     "akari:bakuhatsu"
+--- a/app-operator.js
++++ b/app-operator.js
+@@ -8,10 +8,26 @@
+ /*global gc */
+ 'use strict';
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var RECORDING_DATA_FILE = __dirname + '/data/recording.json';
+-var RECORDED_DATA_FILE  = __dirname + '/data/recorded.json';
++var CHINACHU_DIR     = __dirname + '/';
++var VAR_DIR     = __dirname + '/';
++var CONFIG_FILE = __dirname + '/config.json';
++
++var config = null;
++try {
++        config = require(CONFIG_FILE);
++}
++catch(e) {
++        CONFIG_FILE = '/etc/chinachu/config.json';
++        config = require(CONFIG_FILE);
++}
++
++if( typeof config.varDir !== "undefined" ) {
++        VAR_DIR = (config.varDir + '/').replace(/\/+/g, '/');
++}
++
++var RESERVES_DATA_FILE  = VAR_DIR + '/data/reserves.json';
++var RECORDING_DATA_FILE = VAR_DIR + '/data/recording.json';
++var RECORDED_DATA_FILE  = VAR_DIR + '/data/recorded.json';
+ 
+ // 標準モジュールのロード
+ var path          = require('path');
+@@ -20,7 +36,7 @@
+ var child_process = require('child_process');
+ 
+ // ディレクトリチェック
+-if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
++if (!fs.existsSync(VAR_DIR + './data/') || !fs.existsSync(VAR_DIR + './log/') || !fs.existsSync(__dirname + '/web/')) {
+ 	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
+ 	process.exit(1);
+ }
+@@ -154,8 +170,8 @@
+ 	util.log('SPAWN: ' + process.execPath + ' app-scheduler.js -f (pid=' + scheduler.pid + ')');
+ 	
+ 	// ログ用
+-	output = fs.createWriteStream('./log/scheduler', { flags: 'a' });
+-	util.log('STREAM: ./log/scheduler');
++	output = fs.createWriteStream(VAR_DIR + '/log/scheduler', { flags: 'a' });
++	util.log('STREAM: ' + VAR_DIR + '/log/scheduler');
+ 	
+ 	finalize = function () {
+ 		try {
+@@ -275,8 +291,8 @@
+ 		util.log('SPAWN: ' + process.execPath + ' app-scheduler.js -f -ch ' + program.channel.channel + ' -l ' + recPath + ' (pid=' + epgProc.pid + ')');
+ 		
+ 		// ログ用
+-		output = fs.createWriteStream('./log/scheduler', { flags: 'a' });
+-		util.log('STREAM: ./log/scheduler');
++		output = fs.createWriteStream(VAR_DIR + './log/scheduler', { flags: 'a' });
++		util.log('STREAM: ' + VAR_DIR + './log/scheduler');
+ 		
+ 		epgProc.stdout.on('data', function (data) {
+ 			output.write(data);
+--- a/api/script-program.vm.js
++++ b/api/script-program.vm.js
+@@ -14,8 +14,8 @@
+ 			if (chinachu.getProgramById(program.id, data.reserves) !== null) {
+ 				return response.error(409);
+ 			}
+-			
+-			child_process.exec(process.execPath + ' ' + 'app-cli.js -mode reserve -id ' + program.id, function(err, stdout, stderr) {
++
++			child_process.exec(process.execPath + ' ' + define.CHINACHU_DIR + '/app-cli.js -mode reserve -id ' + program.id, function(err, stdout, stderr) {
+ 				if (err) return response.error(500);
+ 				
+ 				response.head(200);
+--- a/app-scheduler.js
++++ b/app-scheduler.js
+@@ -8,10 +8,25 @@
+ /*global gc */
+ 'use strict';
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RULES_FILE          = __dirname + '/rules.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var SCHEDULE_DATA_FILE  = __dirname + '/data/schedule.json';
++var VAR_DIR = __dirname + '/';
++var CONFIG_FILE = __dirname + '/config.json';
++
++var config = null;
++try {
++        config = require(CONFIG_FILE);
++}
++catch(e) {
++        CONFIG_FILE = '/etc/chinachu/config.json';
++        config = require(CONFIG_FILE);
++}
++
++if( typeof config.varDir !== "undefined" ) {
++        VAR_DIR = (config.varDir + '/').replace(/\/+/g, '/');
++}
++
++var RULES_FILE          = VAR_DIR + '/rules.json';
++var RESERVES_DATA_FILE  = VAR_DIR + '/data/reserves.json';
++var SCHEDULE_DATA_FILE  = VAR_DIR + '/data/schedule.json';
+ 
+ // 標準モジュールのロード
+ var path          = require('path');
+@@ -20,7 +35,7 @@
+ var child_process = require('child_process');
+ 
+ // ディレクトリチェック
+-if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
++if (!fs.existsSync(VAR_DIR + './data/') || !fs.existsSync(VAR_DIR + './log/') || !fs.existsSync(__dirname + '/web/')) {
+ 	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
+ 	process.exit(1);
+ }

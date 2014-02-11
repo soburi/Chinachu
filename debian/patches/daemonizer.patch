@@ -1,0 +1,70 @@
+--- /dev/null
++++ b/daemonizer/Makefile
+@@ -0,0 +1,24 @@
++CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
++CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
++CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
++LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS)
++
++SRC:= daemonizer.c
++
++all: chinachu-wui chinachu-operator
++
++clean:
++	rm -rf chinachu-wui chinachu-operator
++
++E: $(SRC)
++	$(CC) $(LDFLAGS) $(CFLAGS) -DCHINACHU_MODULE=wui -DCHINACHU_PID_PREFIX=\/var\/run\/chinachu\/chinachu- -DCHINACHU_APP_JS_PREFIX=\/usr\/share\/chinachu\/app- -DCHINACHU_LOG_PREFIX=\/var\/lib\/chinachu\/log\/ -DNODE_BIN=\/usr\/bin\/nodejs -E $<
++
++chinachu-%: $(SRC)
++	$(CC) $(LDFLAGS) $(CFLAGS) -DCHINACHU_MODULE=$* -DCHINACHU_PID_PREFIX=\/var\/run\/chinachu\/chinachu- -DCHINACHU_APP_JS_PREFIX=\/usr\/share\/chinachu\/app- -DCHINACHU_LOG_PREFIX=\/var\/lib\/chinachu\/log\/ -DNODE_BIN=\/usr\/bin\/nodejs -o $@ $<
++
++#chinachu-operator: $(SRC)
++#	$(CC) $(LDFLAGS) $(CFLAGS) -DCHINACHU_MODULE=wui -DCHINACHU_PID_PREFIX=\/var\/run\/chinachu\/chinachu- -DCHINACHU_APP_JS_PREFIX=\/usr\/share\/chinachu\/app- -DCHINACHU_LOG_PREFIX=\/var\/lib\/chinachu\/log\/ -DNODE_BIN=\/usr\/bin\/nodejs -o $@ $<
++
++install: chinachu-wui chinachu-operator
++	install -D -m 755 chinachu-wui       $(DESTDIR)/$(PREFIX)/bin/chinachu-wui
++	install -D -m 755 chinachu-operator  $(DESTDIR)/$(PREFIX)/bin/chinachu-operator
+--- /dev/null
++++ b/daemonizer/daemonizer.c
+@@ -0,0 +1,40 @@
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <unistd.h>
++
++#define CHINACHU_APP_JS_POSTFIX .js
++#define CHINACHU_PID_POSTFIX .pid
++
++#define EXP_STR_2(x) #x
++#define EXP_STR(x) EXP_STR_2(x)
++
++#define CHINACHU_MOD_APP_JS  EXP_STR(CHINACHU_APP_JS_PREFIX) EXP_STR(CHINACHU_MODULE) EXP_STR(CHINACHU_APP_JS_POSTFIX)
++#define CHINACHU_MOD_PID_FILE EXP_STR(CHINACHU_PID_PREFIX) EXP_STR(CHINACHU_MODULE) EXP_STR(CHINACHU_PID_POSTFIX)
++#define CHINACHU_MOD_LOG_FILE EXP_STR(CHINACHU_LOG_PREFIX) EXP_STR(CHINACHU_MODULE)
++#define NODEJS_INTERPRETER EXP_STR(NODE_BIN)
++
++const char app_js[] = CHINACHU_MOD_APP_JS;
++
++int main(int argc, char** argv) {
++  
++  char* params[3] = { NODEJS_INTERPRETER, CHINACHU_MOD_APP_JS, NULL };
++  char pnbuf[255] = {0};
++  int err;
++  FILE* fout;
++  FILE* ferr;
++
++  err = daemon(1, 1);
++
++  FILE* f = fopen(CHINACHU_MOD_PID_FILE, "w");
++  if(!f) { fprintf(stderr, CHINACHU_MOD_PID_FILE" cannot open.\n"); return -1; }
++  err = sprintf(pnbuf, "%d", getpid() );
++  err = fwrite(pnbuf, 1, strlen(pnbuf), f);
++  if(err < 0) { fprintf(stderr, CHINACHU_MOD_PID_FILE " cannot write.\n"); return -1; }
++  fclose(f);
++
++  fout = freopen(CHINACHU_MOD_LOG_FILE, "a", stdout);
++  ferr = freopen(CHINACHU_MOD_LOG_FILE, "a", stderr);
++
++  execvp(params[0], params);
++}

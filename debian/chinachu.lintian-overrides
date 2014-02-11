@@ -1,0 +1,15 @@
+chinachu binary: binary-without-manpage usr/bin/chinachu
+chinachu binary: script-not-executable usr/share/chinachu/web/lib/ace/kitchen-sink/docs/coffee.coffee
+chinachu binary: unusual-interpreter usr/share/chinachu/web/lib/ace/kitchen-sink/docs/coffee.coffee #!/usr/bin/coffee
+chinachu binary: script-not-executable usr/share/chinachu/web/lib/ace/kitchen-sink/docs/coffeescript.coffee
+chinachu binary: unusual-interpreter usr/share/chinachu/web/lib/ace/kitchen-sink/docs/coffeescript.coffee #!/usr/bin/coffee
+chinachu binary: script-not-executable usr/share/chinachu/web/lib/ace/kitchen-sink/docs/d.d
+chinachu binary: unusual-interpreter usr/share/chinachu/web/lib/ace/kitchen-sink/docs/d.d #!rdmd
+chinachu binary: script-not-executable usr/share/chinachu/web/lib/ace/kitchen-sink/docs/perl.pl
+chinachu binary: script-not-executable usr/share/chinachu/web/lib/ace/kitchen-sink/docs/ruby.rb
+chinachu binary: script-not-executable usr/share/chinachu/web/lib/ace/kitchen-sink/docs/sh.sh
+chinachu binary: extra-license-file usr/share/chinachu/web/lib/ace/LICENSE
+chinachu binary: extra-license-file usr/share/chinachu/web/lib/flagrate/LICENSE
+chinachu binary: extra-license-file usr/share/doc/chinachu/LICENSE.ace
+chinachu binary: extra-license-file usr/share/doc/chinachu/LICENSE.fragrate
+chinachu binary: executable-not-elf-or-script usr/share/chinachu/web/lib/hyperform.css

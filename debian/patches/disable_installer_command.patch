@@ -1,0 +1,22 @@
+--- a/chinachu
++++ b/chinachu
+@@ -59,13 +59,17 @@
+   local cmd="$1"
+   shift
+   case $cmd in
+-    installer | updater | service | update | search | \
++    service | update | search | \
+     reserve | unreserve | skip | unskip | stop | \
+     rule | enrule | disrule | rmrule | \
+     rules | reserves | recording | recorded | \
+-    cleanup | unlock | ircbot | test )
++    cleanup | unlock | ircbot )
+       cmd="chinachu_$cmd"
+       ;;
++    installer | updater | test )
++      echo "Disable $cmd by debian package."
++      return 0;
++      ;;
+     * )
+       cmd="chinachu_help"
+       ;;

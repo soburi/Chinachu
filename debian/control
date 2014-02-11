@@ -1,0 +1,31 @@
+Source: chinachu
+Section: video
+Priority: optional
+Maintainer: soburi <soburi@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), quilt
+Standards-Version: 3.9.4
+Homepage: http://chinachu.akkar.in/
+Vcs-Git: git://github.com/kanreisa/Chinachu.git
+Vcs-Browser: https://github.com/kanreisa/Chinachu.git
+
+Package: chinachu
+Architecture: all
+Depends: ${misc:Depends}, adduser, nodejs, npm, libjs-prototype
+Suggests: recpt1, epgdump
+Description: World most cute TV recording system.
+ Chinachu is the EPG recording reservation management system
+ for digital broadcast program work with Linux.
+
+Package: chinachu-wui
+Architecture: any
+Depends: ${misc:Depends}, chinachu, ${shlibs:Depends}
+Description: World most cute TV recording system.
+ Chinachu is the EPG recording reservation management system 
+ for digital broadcast program work with Linux.
+
+Package: chinachu-operator
+Architecture: any
+Depends: ${misc:Depends}, chinachu, ${shlibs:Depends}
+Description: World most cute TV recording system.
+ Chinachu is the EPG recording reservation management system 
+ for digital broadcast program work with Linux.
