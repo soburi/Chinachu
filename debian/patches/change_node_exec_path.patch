@@ -4,7 +4,7 @@
  shopt -s extglob
  
  # variables
--NODE_VER=0.10.23
+-NODE_VER=0.10.26
 +NODE_BIN='/usr/bin/nodejs'
 +NODE_VER=`/usr/bin/nodejs --version | sed 's/^v//'`
  
