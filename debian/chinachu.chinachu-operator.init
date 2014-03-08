@@ -1,21 +1,22 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          chinachu-wui
+# Provides:          chinachu-operator
 # Required-Start:    $local_fs $remote_fs $network $syslog
 # Required-Stop:     $local_fs $remote_fs $network $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: starts the chinachu-wui
-# Description:       starts the chinachu-wui
+# Short-Description: starts the chinachu-operator
+# Description:       starts the chinachu-operator
 ### END INIT INFO
 
 # Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="Chinachu webui daemon"
-NAME=chinachu-wui
-DAEMON=/usr/bin/chinachu-wui
+DESC="Chinachu operator daemon"
+NAME=chinachu-operator
+NODE_ARGS="--expose_gc"
+DAEMON_JS=/usr/share/chinachu/app-operator.js
 DAEMON_ARGS=""
 PIDFILE=/var/run/chinachu/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
@@ -24,7 +25,7 @@ HOMEDIR=`grep $USERNAME < /etc/passwd | sed 's/^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\(
 NODE_PATH=${HOMEDIR}/node_modules
 
 # Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
+[ -e "$DAEMON_JS" ] || exit 0
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
@@ -47,15 +48,14 @@ do_start()
 	#   1 if daemon was already running
 	#   2 if daemon could not be started
 	USER=$USERNAME HOME=$HOMEDIR NODE_PATH=$NODE_PATH \
-	start-stop-daemon --start --quiet --pidfile $PIDFILE --test \
-		--chuid $USERNAME -d $HOMEDIR \
-		--exec $DAEMON $DAEMON_ARGS > /dev/null \
+	start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE \
+		--quiet --test --chuid $USERNAME -d $HOMEDIR --exec /usr/bin/nodejs -- \
+		$NODE_ARGS $DAEMON_JS $DAEMON_ARGS > /dev/null \
 		|| return 1
 	USER=$USERNAME HOME=$HOMEDIR NODE_PATH=$NODE_PATH \
-	start-stop-daemon --start --quiet --pidfile $PIDFILE \
-		--chuid $USERNAME -d $HOMEDIR \
-		--exec $DAEMON $DAEMON_ARGS > /dev/null \
-		$DAEMON_ARGS \
+	start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE \
+		--quiet --chuid $USERNAME -d $HOMEDIR --exec /usr/bin/nodejs -- \
+		$NODE_ARGS $DAEMON_JS $DAEMON_ARGS > /dev/null \
 		|| return 2
 	# The above code will not work for interpreted scripts, use the next
 	# six lines below instead (Ref: #643337, start-stop-daemon(8) )

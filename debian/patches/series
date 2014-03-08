@@ -1,4 +1,3 @@
-daemonizer.patch
 submodule_interpreter_lintian.patch
 change_node_exec_path.patch
 hardcoded_nodejs_path.patch

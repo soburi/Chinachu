@@ -15,17 +15,3 @@ Suggests: recpt1, epgdump
 Description: World most cute TV recording system.
  Chinachu is the EPG recording reservation management system
  for digital broadcast program work with Linux.
-
-Package: chinachu-wui
-Architecture: any
-Depends: ${misc:Depends}, chinachu, ${shlibs:Depends}
-Description: World most cute TV recording system.
- Chinachu is the EPG recording reservation management system 
- for digital broadcast program work with Linux.
-
-Package: chinachu-operator
-Architecture: any
-Depends: ${misc:Depends}, chinachu, ${shlibs:Depends}
-Description: World most cute TV recording system.
- Chinachu is the EPG recording reservation management system 
- for digital broadcast program work with Linux.
