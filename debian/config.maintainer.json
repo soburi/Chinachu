@@ -24,28 +24,28 @@
   
   "tuners": [
     {
-      "name"        : "DVB-S1",
+      "name"        : "PT3-S1",
       "isScrambling": false,
       "types"       : [ "BS", "CS" ],
-      "command"     : "recpt1 --device /dev/dvb/adapter0 --b25 --strip --sid <sid> <channel> - -"
+      "command"     : "recpt1 --device /dev/pt3video0 --b25 --strip --sid <sid> <channel> - -"
     },
     {
-      "name"        : "DVB-S2",
+      "name"        : "PT3-S2",
       "isScrambling": false,
       "types"       : [ "BS", "CS" ],
-      "command"     : "recpt1 --device /dev/dvb/adapter2 --b25 --strip --sid <sid> <channel> - -"
+      "command"     : "recpt1 --device /dev/pt3video1 --b25 --strip --sid <sid> <channel> - -"
     },
     {
-      "name"        : "DVB-T1",
+      "name"        : "PT3-T1",
       "isScrambling": false,
       "types"       : [ "GR" ],
-      "command"     : "recpt1 --device /dev/dvb/adapter1 --b25 --strip --sid <sid> <channel> - -"
+      "command"     : "recpt1 --device /dev/pt3video2 --b25 --strip --sid <sid> <channel> - -"
     },
     {
-      "name"        : "DVB-T2",
+      "name"        : "PT3-T2",
       "isScrambling": false,
       "types"       : [ "GR" ],
-      "command"     : "recpt1 --device /dev/dvb/adapter3 --b25 --strip --sid <sid> <channel> - -"
+      "command"     : "recpt1 --device /dev/pt3video3 --b25 --strip --sid <sid> <channel> - -"
     }
   ],
   
@@ -60,6 +60,4 @@
     { "type": "GR", "channel": "16" },
     { "type": "GR", "channel": "28" }
   ]
-
-
 }
