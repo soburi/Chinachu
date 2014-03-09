@@ -1,3 +1,9 @@
+chinachu (20140301-1ppa1) saucy; urgency=low
+
+  * ppa1 release.
+
+ -- soburi <soburi@gmail.com>  Sun, 09 Mar 2014 19:36:36 +0900
+
 chinachu (0.0.1ppa20140307-1ubuntu1) saucy; urgency=low
 
   * Upstream update.
