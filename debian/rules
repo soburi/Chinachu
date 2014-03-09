@@ -6,13 +6,22 @@ basedir = $(CURDIR)/debian/chinachu
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
 
-override_dh_auto_install:
-	dh_install -Xprototype.js -XLICENSE
+override_dh_install:
+	dh_install -Xprototype.js \
+		   -Xweb/lib/ace/src/ \
+		   -Xweb/lib/ace/src-min/ \
+		   -Xweb/lib/ace/src-noconflict/ \
+		   -Xweb/lib/ace/demo/ \
+		   -Xweb/lib/ace/kitchen-sink/ \
+		   -Xweb/lib/ace/kitchen-sink.html \
+		   -Xweb/lib/ace/kitchen-sink-req.html \
+		   -Xweb/lib/ace/editor.html \
+		   -Xweb/lib/ace/scrollable-page.html
 	mkdir -p -m 744 $(basedir)/etc/chinachu/
-	#install -m 600 config.sample.json $(basedir)/etc/chinachu/config.json
 	install -m 600 debian/config.maintainer.json $(basedir)/etc/chinachu/config.json
-	install -m 644 web/lib/ace/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.ace
-	install -m 644 web/lib/flagrate/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.fragrate
+	ln -s web/lib/ace/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.ace
+	ln -s web/lib/flagrate/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.fragrate
+	find $(basedir)/usr/share/chinachu/web -type f | xargs chmod a-x
 
 override_dh_installinit:
 	dh_installinit -pchinachu --name chinachu-operator
