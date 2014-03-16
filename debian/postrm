@@ -25,6 +25,7 @@ case "$1" in
 
 
     purge)
+        killall -HUP -u chinachu || echo "Failed kill chinachu processes."
         if getent passwd chinachu >/dev/null; then
                 if [ -x /usr/sbin/deluser ]; then
                         deluser --system chinachu || echo "Could not remove chinachu user."
