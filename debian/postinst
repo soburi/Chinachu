@@ -25,16 +25,23 @@ case "$1" in
           adduser --system --group --quiet --home /var/lib/chinachu \
             --disabled-login --force-badname chinachu
         fi
-	addgroup chinachu video
-	chown -R root:chinachu /etc/chinachu/ ; chmod -R 770 /etc/chinachu/config.json
+        addgroup chinachu video
+        chown -R root:chinachu /etc/chinachu/ ; chmod -R 770 /etc/chinachu/config.json
+
         install -m 2755 -o chinachu -g chinachu -d /var/run/chinachu
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu/log
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu/data
+
+        for SRC in `find /usr/share/chinachu/ -maxdepth 1 -mindepth 1 -name 'node_modules'  -prune -o -print`
+        do
+                ln -f -s -T $SRC /var/lib/chinachu/`basename $SRC`
+        done
+
         install -m 644 -o chinachu /usr/share/chinachu/package.json /var/lib/chinachu/
         ( cd /var/lib/chinachu ; sudo -H -u chinachu /usr/bin/npm install )
-        rm -rf /var/lib/chinachu/package.json
 
+        ln -f -s -T /usr/share/chinachu/node_modules/chinachu-common /var/lib/chinachu/node_modules/chinachu-common
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

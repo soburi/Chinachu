@@ -35,7 +35,23 @@ case "$1" in
                         delgroup --system chinachu || echo "Could not remove chinachu group."
                 fi
         fi
-        rm -rf /var/run/chinachu
+
+        rm -f /etc/chinachu/config.json
+        rm -d /etc/chinachu/
+
+        rm -rf /var/run/chinachu/
+
+        rm -f `find /var/lib/chinachu/ -maxdepth 1 -type l`
+        rm -rf /var/lib/chinachu/.cache/
+        rm -rf /var/lib/chinachu/.npm/
+        rm -rf /var/lib/chinachu/node_modules/
+        rm -rf /var/lib/chinachu/tmp/
+        rm -rf /var/lib/chinachu/log/
+        rm -rf /var/lib/chinachu/data/
+        rm -rf /var/lib/chinachu/rules.json
+        rm -rf /var/lib/chinachu/package.json
+        rm -d  /var/lib/chinachu/ > /dev/null || echo "/var/lib/chinachu is not empty"
+        #rm -rf /var/lib/chinachu/recorded
     ;;
 
 
