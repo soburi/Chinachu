@@ -19,8 +19,8 @@ override_dh_install:
 		   -Xweb/lib/ace/scrollable-page.html
 	mkdir -p -m 744 $(basedir)/etc/chinachu/
 	install -m 600 debian/config.maintainer.json $(basedir)/etc/chinachu/config.json
-	ln -s web/lib/ace/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.ace
-	ln -s web/lib/flagrate/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.fragrate
+#	ln -s /usr/share/chinachu/web/lib/ace/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.ace
+#	ln -s /usr/share/chinachu/web/lib/flagrate/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.fragrate
 	find $(basedir)/usr/share/chinachu/web -type f | xargs chmod a-x
 
 override_dh_installinit:
