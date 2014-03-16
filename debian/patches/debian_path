@@ -1,0 +1,112 @@
+Index: chinachu/app-cli.js
+===================================================================
+--- chinachu.orig/app-cli.js	2014-03-16 12:01:53.132525954 +0900
++++ chinachu/app-cli.js	2014-03-16 12:01:53.124525914 +0900
+@@ -5,12 +5,12 @@
+  *  http://chinachu.akkar.in/
+ **/
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RULES_FILE          = __dirname + '/rules.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var SCHEDULE_DATA_FILE  = __dirname + '/data/schedule.json';
+-var RECORDING_DATA_FILE = __dirname + '/data/recording.json';
+-var RECORDED_DATA_FILE  = __dirname + '/data/recorded.json';
++var CONFIG_FILE         = '/etc/chinachu/config.json';
++var RULES_FILE          = '/var/lib/chinachu/rules.json';
++var RESERVES_DATA_FILE  = '/var/lib/chinachu/data/reserves.json';
++var SCHEDULE_DATA_FILE  = '/var/lib/chinachu/data/schedule.json';
++var RECORDING_DATA_FILE = '/var/lib/chinachu/data/recording.json';
++var RECORDED_DATA_FILE  = '/var/lib/chinachu/data/recorded.json';
+ 
+ // 標準モジュールのロード
+ var fs            = require('fs');
+Index: chinachu/app-operator.js
+===================================================================
+--- chinachu.orig/app-operator.js	2014-03-16 12:01:53.132525954 +0900
++++ chinachu/app-operator.js	2014-03-16 12:01:53.124525914 +0900
+@@ -8,10 +8,10 @@
+ /*global gc */
+ 'use strict';
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var RECORDING_DATA_FILE = __dirname + '/data/recording.json';
+-var RECORDED_DATA_FILE  = __dirname + '/data/recorded.json';
++var CONFIG_FILE         = '/etc/chinachu/config.json';
++var RESERVES_DATA_FILE  = '/var/lib/chinachu/data/reserves.json';
++var RECORDING_DATA_FILE = '/var/lib/chinachu/data/recording.json';
++var RECORDED_DATA_FILE  = '/var/lib/chinachu/data/recorded.json';
+ 
+ // 標準モジュールのロード
+ var path          = require('path');
+Index: chinachu/app-wui.js
+===================================================================
+--- chinachu.orig/app-wui.js	2014-03-16 12:01:53.132525954 +0900
++++ chinachu/app-wui.js	2014-03-16 12:01:56.000000000 +0900
+@@ -8,15 +8,15 @@
+ /*global gc */
+ 'use strict';
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RULES_FILE          = __dirname + '/rules.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var SCHEDULE_DATA_FILE  = __dirname + '/data/schedule.json';
+-var RECORDING_DATA_FILE = __dirname + '/data/recording.json';
+-var RECORDED_DATA_FILE  = __dirname + '/data/recorded.json';
+-var OPERATOR_LOG_FILE   = __dirname + '/log/operator';
+-var WUI_LOG_FILE        = __dirname + '/log/wui';
+-var SCHEDULER_LOG_FILE  = __dirname + '/log/scheduler';
++var CONFIG_FILE         = '/etc/chinachu/config.json';
++var RULES_FILE          = '/var/lib/chinachu/rules.json';
++var RESERVES_DATA_FILE  = '/var/lib/chinachu/data/reserves.json';
++var SCHEDULE_DATA_FILE  = '/var/lib/chinachu/data/schedule.json';
++var RECORDING_DATA_FILE = '/var/lib/chinachu/data/recording.json';
++var RECORDED_DATA_FILE  = '/var/lib/chinachu/data/recorded.json';
++var OPERATOR_LOG_FILE   = '/var/lib/chinachu/log/operator';
++var WUI_LOG_FILE        = '/var/lib/chinachu/log/wui';
++var SCHEDULER_LOG_FILE  = '/var/lib/chinachu/log/scheduler';
+ 
+ // 標準モジュールのロード
+ var path          = require('path');
+@@ -814,8 +814,8 @@
+ 	
+ 	var c = chinachu.createCountdown(2, chinachu.createTimeout(processChecker, 5000));
+ 	
+-	if (fs.existsSync('/var/run/chinachu-operator.pid') === true) {
+-		fs.readFile('/var/run/chinachu-operator.pid', function (err, pid) {
++	if (fs.existsSync('/var/run/chinachu/chinachu-operator.pid') === true) {
++		fs.readFile('/var/run/chinachu/chinachu-operator.pid', function (err, pid) {
+ 			
+ 			if (err) { return c.tick(); }
+ 			
+@@ -843,8 +843,8 @@
+ 		c.tick();
+ 	}
+ 	
+-	if (fs.existsSync('/var/run/chinachu-wui.pid') === true) {
+-		fs.readFile('/var/run/chinachu-wui.pid', function (err, pid) {
++	if (fs.existsSync('/var/run/chinachu/chinachu-wui.pid') === true) {
++		fs.readFile('/var/run/chinachu/chinachu-wui.pid', function (err, pid) {
+ 			
+ 			if (err) { return c.tick(); }
+ 			
+Index: chinachu/app-scheduler.js
+===================================================================
+--- chinachu.orig/app-scheduler.js	2014-03-16 10:09:08.070979825 +0900
++++ chinachu/app-scheduler.js	2014-03-16 12:02:42.032768437 +0900
+@@ -8,10 +8,10 @@
+ /*global gc */
+ 'use strict';
+ 
+-var CONFIG_FILE         = __dirname + '/config.json';
+-var RULES_FILE          = __dirname + '/rules.json';
+-var RESERVES_DATA_FILE  = __dirname + '/data/reserves.json';
+-var SCHEDULE_DATA_FILE  = __dirname + '/data/schedule.json';
++var CONFIG_FILE         = '/etc/chinachu/config.json';
++var RULES_FILE          = '/var/lib/chinachu/rules.json';
++var RESERVES_DATA_FILE  = '/var/lib/chinachu/data/reserves.json';
++var SCHEDULE_DATA_FILE  = '/var/lib/chinachu/data/schedule.json';
+ 
+ // 標準モジュールのロード
+ var path          = require('path');

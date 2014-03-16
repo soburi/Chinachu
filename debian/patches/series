@@ -1,4 +1,6 @@
 change_node_exec_path.patch
 hardcoded_nodejs_path.patch
 disable_installer_command.patch
-var_dir.patch
+chinachu_in_PATH
+debian_path
+log_to_file

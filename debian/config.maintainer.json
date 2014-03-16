@@ -1,9 +1,6 @@
 {
   "recordedDir" : "./recorded/",
   "temporaryDir": "/tmp/",
-  "varDir" : "/var/lib/chinachu",
-  "wuiPidFile" : "/var/run/chinachu/chinachu-wui.pid",
-  "operatorPidFile" : "/var/run/chinachu/chinachu-operator.pid",
   
   "wuiUsers": [
     "akari:bakuhatsu"

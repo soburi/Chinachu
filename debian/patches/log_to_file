@@ -1,0 +1,93 @@
+Index: chinachu/app-operator.js
+===================================================================
+--- chinachu.orig/app-operator.js	2014-03-16 12:11:52.823499661 +0900
++++ chinachu/app-operator.js	2014-03-16 13:42:56.390592027 +0900
+@@ -12,6 +12,7 @@
+ var RESERVES_DATA_FILE  = '/var/lib/chinachu/data/reserves.json';
+ var RECORDING_DATA_FILE = '/var/lib/chinachu/data/recording.json';
+ var RECORDED_DATA_FILE  = '/var/lib/chinachu/data/recorded.json';
++var OPERATOR_LOG_FILE   = '/var/lib/chinachu/log/operator';
+ 
+ // 標準モジュールのロード
+ var path          = require('path');
+@@ -19,6 +20,38 @@
+ var util          = require('util');
+ var child_process = require('child_process');
+ 
++// stdoutをフックしてログファイルに出力
++var logFile = fs.createWriteStream(OPERATOR_LOG_FILE, { encoding: 'utf8', flags   : 'a+' });
++function hook_stream(stream, callback) {
++        var old_write = stream.write
++
++        stream.write = (function(write) {
++                return function(string, encoding, fd) {
++                         write.apply(process.stdout, arguments)
++                         callback(string, encoding, fd)
++                 }
++        })(stream.write)
++
++        return function() {
++                stream.write = old_write
++        }
++}
++
++var unhook_stdout = hook_stream(process.stdout, function(string, encoding, fd) {
++        logFile.write(string);
++})
++
++var unhook_stderr = hook_stream(process.stderr, function(string, encoding, fd) {
++        logFile.write(string);
++})
++
++process.on('exit', function() {
++        setTimeout(function () {
++                logFile.close();
++        }, 0);
++});
++
++
+ // ディレクトリチェック
+ if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
+ 	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
+Index: chinachu/app-wui.js
+===================================================================
+--- chinachu.orig/app-wui.js	2014-03-16 12:11:52.867499879 +0900
++++ chinachu/app-wui.js	2014-03-16 13:41:42.598226110 +0900
+@@ -29,6 +29,37 @@
+ var os            = require('os');
+ var zlib          = require('zlib');
+ 
++// stdoutをフックしてログファイルに出力
++var logFile = fs.createWriteStream(WUI_LOG_FILE, { encoding: 'utf8', flags   : 'a+' });
++function hook_stream(stream, callback) {
++        var old_write = stream.write
++
++        stream.write = (function(write) {
++                return function(string, encoding, fd) {
++                         write.apply(process.stdout, arguments)
++                         callback(string, encoding, fd)
++                 }
++        })(stream.write)
++
++        return function() {
++                stream.write = old_write
++        }
++}
++
++var unhook_stdout = hook_stream(process.stdout, function(string, encoding, fd) {
++        logFile.write(string);
++})
++
++var unhook_stderr = hook_stream(process.stderr, function(string, encoding, fd) {
++        logFile.write(string);
++})
++
++process.on('exit', function() {
++	setTimeout(function () {
++		logFile.close();
++	}, 0);
++});
++
+ // ディレクトリチェック
+ if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
+ 	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
