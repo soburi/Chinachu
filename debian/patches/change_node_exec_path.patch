@@ -1,5 +1,7 @@
---- a/chinachu
-+++ b/chinachu
+Index: chinachu/chinachu
+===================================================================
+--- chinachu.orig/chinachu	2014-04-02 00:16:06.733927391 +0900
++++ chinachu/chinachu	2014-04-02 00:16:06.725927352 +0900
 @@ -16,7 +16,8 @@
  shopt -s extglob
  

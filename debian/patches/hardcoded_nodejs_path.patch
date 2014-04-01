@@ -1,5 +1,7 @@
---- a/api/script-program.vm.js
-+++ b/api/script-program.vm.js
+Index: chinachu/api/script-program.vm.js
+===================================================================
+--- chinachu.orig/api/script-program.vm.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/api/script-program.vm.js	2014-04-02 00:24:47.904511737 +0900
 @@ -15,7 +15,7 @@
  				return response.error(409);
  			}
@@ -9,8 +11,10 @@
  				if (err) return response.error(500);
  				
  				response.head(200);
---- a/api/script-reserves-program-action.vm.js
-+++ b/api/script-reserves-program-action.vm.js
+Index: chinachu/api/script-reserves-program-action.vm.js
+===================================================================
+--- chinachu.orig/api/script-reserves-program-action.vm.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/api/script-reserves-program-action.vm.js	2014-04-02 00:24:47.908511757 +0900
 @@ -10,10 +10,10 @@
  			
  			switch (request.param.action) {
@@ -24,8 +28,10 @@
  					break;
  			}
  			
---- a/api/script-reserves-program.vm.js
-+++ b/api/script-reserves-program.vm.js
+Index: chinachu/api/script-reserves-program.vm.js
+===================================================================
+--- chinachu.orig/api/script-reserves-program.vm.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/api/script-reserves-program.vm.js	2014-04-02 00:24:47.908511757 +0900
 @@ -15,7 +15,7 @@
  				return response.error(409);
  			}
@@ -35,8 +41,10 @@
  				if (err) return response.error(500);
  				
  				response.head(200);
---- a/api/script-rules-rule-action.vm.js
-+++ b/api/script-rules-rule-action.vm.js
+Index: chinachu/api/script-rules-rule-action.vm.js
+===================================================================
+--- chinachu.orig/api/script-rules-rule-action.vm.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/api/script-rules-rule-action.vm.js	2014-04-02 00:24:47.908511757 +0900
 @@ -10,10 +10,10 @@
  			
  			switch (request.param.action) {
@@ -50,18 +58,20 @@
  					break;
  			}
  			
---- a/api/script-rules-rule.vm.js
-+++ b/api/script-rules-rule.vm.js
-@@ -22,7 +22,7 @@
- 				return response.error(400);
- 			}
- 			
--			child_process.exec('node app-cli.js -mode rule -n ' + request.param.num + ' ' + args.join(' '), function(err, stdout, stderr) {
-+			child_process.exec(process.execPath + ' ' + 'app-cli.js -mode rule -n ' + request.param.num + ' ' + args.join(' '), function(err, stdout, stderr) {
- 				if (err) return response.error(500);
- 				
- 				response.head(200);
-@@ -31,7 +31,7 @@
+Index: chinachu/api/script-rules-rule.vm.js
+===================================================================
+--- chinachu.orig/api/script-rules-rule.vm.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/api/script-rules-rule.vm.js	2014-04-02 00:27:11.673224647 +0900
+@@ -36,7 +36,7 @@
+ 					return response.error(400);
+ 				}
+ 
+-				child_process.exec('node app-cli.js -mode rule -n ' + request.param.num + ' ' + args.join(' '), function(err, stdout, stderr) {
++				child_process.exec(process.execPath + ' ' + 'app-cli.js -mode rule -n ' + request.param.num + ' ' + args.join(' '), function(err, stdout, stderr) {
+ 					if (err) return response.error(500);
+ 
+ 					response.head(200);
+@@ -46,7 +46,7 @@
  			return;
  		
  		case 'DELETE':
@@ -70,19 +80,23 @@
  				if (err) return response.error(500);
  				
  				response.head(200);
---- a/api/script-rules.vm.js
-+++ b/api/script-rules.vm.js
-@@ -18,7 +18,7 @@
- 				return response.error(400);
- 			}
- 			
--			child_process.exec('node app-cli.js -mode rule ' + args.join(' '), function(err, stdout, stderr) {
-+			child_process.exec(process.execPath + ' ' + 'app-cli.js -mode rule ' + args.join(' '), function(err, stdout, stderr) {
- 				if (err) return response.error(500);
- 				
- 				response.head(200);
---- a/app-operator.js
-+++ b/app-operator.js
+Index: chinachu/api/script-rules.vm.js
+===================================================================
+--- chinachu.orig/api/script-rules.vm.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/api/script-rules.vm.js	2014-04-02 00:25:43.000784944 +0900
+@@ -32,7 +32,7 @@
+ 					return response.error(400);
+ 				}
+ 
+-				child_process.exec('node app-cli.js -mode rule ' + args.join(' '), function(err, stdout, stderr) {
++				child_process.exec(process.execPath + ' ' + 'app-cli.js -mode rule ' + args.join(' '), function(err, stdout, stderr) {
+ 					if (err) return response.error(500);
+ 
+ 					response.head(200);
+Index: chinachu/app-operator.js
+===================================================================
+--- chinachu.orig/app-operator.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/app-operator.js	2014-04-02 00:24:47.908511757 +0900
 @@ -150,8 +150,8 @@
  	
  	var output, finalize;
@@ -107,8 +121,10 @@
  		
  		// ログ用
  		output = fs.createWriteStream('./log/scheduler', { flags: 'a' });
---- a/app-wui.js
-+++ b/app-wui.js
+Index: chinachu/app-wui.js
+===================================================================
+--- chinachu.orig/app-wui.js	2014-04-02 00:24:47.916511796 +0900
++++ chinachu/app-wui.js	2014-04-02 00:24:47.912511776 +0900
 @@ -503,6 +503,9 @@
  				setTimeout : setTimeout,
  				clearInterval: clearInterval,
