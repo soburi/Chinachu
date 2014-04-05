@@ -1,0 +1,146 @@
+Index: chinachu/api/script-program.vm.js
+===================================================================
+--- chinachu.orig/api/script-program.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-program.vm.js	2014-04-05 14:27:26.128519823 +0900
+@@ -16,7 +16,11 @@
+ 			}
+ 			
+ 			child_process.exec(process.execPath + ' ' + 'app-cli.js -mode reserve -id ' + program.id, function(err, stdout, stderr) {
+-				if (err) return response.error(500);
++				if (err) {
++					util.log(process.execPath + ' ' + 'app-cli.js -mode reserve -id ' + program.id);
++					util.log(stdout);
++					return response.error(500);
++				}
+ 				
+ 				response.head(200);
+ 				response.end('{}');
+Index: chinachu/api/script-recording-program.vm.js
+===================================================================
+--- chinachu.orig/api/script-recording-program.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-recording-program.vm.js	2014-04-05 14:27:26.128519823 +0900
+@@ -12,7 +12,10 @@
+ 		
+ 		case 'DELETE':
+ 			child_process.exec('kill -TERM ' + program.pid, function(err, stdout, stderr) {
+-				if (err) return response.error(500);
++				if (err) {
++					util.log(stdout);
++					return response.error(500);
++				}
+ 				
+ 				response.head(200);
+ 				response.end('{}');
+Index: chinachu/api/script-reserves-program-action.vm.js
+===================================================================
+--- chinachu.orig/api/script-reserves-program-action.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-reserves-program-action.vm.js	2014-04-05 14:27:26.132519843 +0900
+@@ -18,7 +18,10 @@
+ 			}
+ 			
+ 			child_process.exec(cmd, function(err, stdout, stderr) {
+-				if (err) return response.error(500);
++				if (err) {
++					util.log(stdout);
++					return response.error(500);
++				}
+ 				
+ 				response.head(200);
+ 				response.end('{}');
+Index: chinachu/api/script-reserves-program.vm.js
+===================================================================
+--- chinachu.orig/api/script-reserves-program.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-reserves-program.vm.js	2014-04-05 14:27:26.132519843 +0900
+@@ -16,7 +16,11 @@
+ 			}
+ 			
+ 			child_process.exec(process.execPath + ' ' + 'app-cli.js -mode unreserve -id ' + program.id, function(err, stdout, stderr) {
+-				if (err) return response.error(500);
++				if (err) {
++					util.log(process.execPath + ' ' + 'app-cli.js -mode unreserve -id ' + program.id);
++					util.log(stdout);
++					return response.error(500);
++				}
+ 				
+ 				response.head(200);
+ 				response.end('{}');
+Index: chinachu/api/script-rules-rule-action.vm.js
+===================================================================
+--- chinachu.orig/api/script-rules-rule-action.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-rules-rule-action.vm.js	2014-04-05 14:27:26.132519843 +0900
+@@ -18,7 +18,11 @@
+ 			}
+ 			
+ 			child_process.exec(cmd, function(err, stdout, stderr) {
+-				if (err) return response.error(500);
++				if (err) {
++					util.log(cmd);
++					util.log(stdout);
++					return response.error(500);
++				}
+ 				
+ 				response.head(200);
+ 				response.end('{}');
+Index: chinachu/api/script-rules-rule.vm.js
+===================================================================
+--- chinachu.orig/api/script-rules-rule.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-rules-rule.vm.js	2014-04-05 14:27:26.132519843 +0900
+@@ -37,7 +37,11 @@
+ 				}
+ 
+ 				child_process.exec(process.execPath + ' ' + 'app-cli.js -mode rule -n ' + request.param.num + ' ' + args.join(' '), function(err, stdout, stderr) {
+-					if (err) return response.error(500);
++					if (err) {
++						util.log(process.execPath + ' ' + 'app-cli.js -mode rule -n ' + request.param.num + ' ' + args.join(' ') );
++						util.log(stdout);
++						return response.error(500);
++					}
+ 
+ 					response.head(200);
+ 					response.end('{}');
+@@ -47,7 +51,11 @@
+ 		
+ 		case 'DELETE':
+ 			child_process.exec(process.execPath + ' ' + 'app-cli.js -mode rule --remove -n ' + request.param.num, function(err, stdout, stderr) {
+-				if (err) return response.error(500);
++				if (err) {
++					util.log(process.execPath + ' ' + 'app-cli.js -mode rule --remove -n ' + request.param.num);
++					util.log(stdout);
++					return response.error(500);
++				}
+ 				
+ 				response.head(200);
+ 				response.end('{}');
+Index: chinachu/api/script-rules.vm.js
+===================================================================
+--- chinachu.orig/api/script-rules.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-rules.vm.js	2014-04-05 14:27:26.132519843 +0900
+@@ -33,7 +33,11 @@
+ 				}
+ 
+ 				child_process.exec(process.execPath + ' ' + 'app-cli.js -mode rule ' + args.join(' '), function(err, stdout, stderr) {
+-					if (err) return response.error(500);
++					if (err) {
++						util.log( process.execPath + ' ' + 'app-cli.js -mode rule ' + args.join(' ') );
++						util.log(stdout);
++						return response.error(500);
++					}
+ 
+ 					response.head(200);
+ 					response.end('{}');
+Index: chinachu/api/script-scheduler.vm.js
+===================================================================
+--- chinachu.orig/api/script-scheduler.vm.js	2014-04-05 14:27:05.504417554 +0900
++++ chinachu/api/script-scheduler.vm.js	2014-04-05 14:27:26.132519843 +0900
+@@ -7,7 +7,10 @@
+ 		
+ 		case 'PUT':
+ 			child_process.exec('chinachu update', function(err, stdout, stderr) {
+-				if (err) return response.error(500);
++				if (err) {
++					util.log(stdout);
++					return response.error(500);
++				}
+ 				
+ 				res();
+ 			});

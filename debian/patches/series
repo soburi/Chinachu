@@ -4,3 +4,4 @@ disable_installer_command.patch
 chinachu_in_PATH
 debian_path
 log_to_file
+log_childprocess
