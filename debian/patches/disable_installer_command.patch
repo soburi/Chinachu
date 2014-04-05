@@ -1,6 +1,8 @@
---- a/chinachu
-+++ b/chinachu
-@@ -59,13 +59,17 @@
+Index: chinachu/chinachu
+===================================================================
+--- chinachu.orig/chinachu	2014-04-05 14:26:54.964365289 +0900
++++ chinachu/chinachu	2014-04-05 14:26:54.956365249 +0900
+@@ -64,13 +64,17 @@
    local cmd="$1"
    shift
    case $cmd in
