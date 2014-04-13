@@ -1,3 +1,16 @@
+chinachu (20140406-1ppa1) trusty; urgency=low
+
+  * 20140406-1ppa1 release
+  * Update debianize patches.
+  * Create /var/run/chinachu dir on launch.
+  * Checking chinachu-user existence in video group.
+  * Remove killall on postrm.
+  * Overriding false-positive errors. (source-is-missing)
+  * Change control file to compliant the debian standard version 3.9.5.
+  * Remove unused chinachu.SECTION.
+
+ -- soburi <soburi@gmail.com>  Sun, 13 Apr 2014 15:03:54 +0900
+
 chinachu (20140403-1ppa1) saucy; urgency=low
 
   * 20140403-1ppa1 release
