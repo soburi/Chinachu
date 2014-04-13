@@ -1,7 +1,7 @@
-Index: chinachu/app-operator.js
+Index: chinachu-20140406/app-operator.js
 ===================================================================
---- chinachu.orig/app-operator.js	2014-03-16 12:11:52.823499661 +0900
-+++ chinachu/app-operator.js	2014-03-16 13:42:56.390592027 +0900
+--- chinachu-20140406.orig/app-operator.js	2014-04-08 01:32:13.356464286 +0900
++++ chinachu-20140406/app-operator.js	2014-04-08 01:32:13.348464246 +0900
 @@ -12,6 +12,7 @@
  var RESERVES_DATA_FILE  = '/var/lib/chinachu/data/reserves.json';
  var RECORDING_DATA_FILE = '/var/lib/chinachu/data/recording.json';
@@ -49,13 +49,13 @@ Index: chinachu/app-operator.js
  // ディレクトリチェック
  if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
  	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
-Index: chinachu/app-wui.js
+Index: chinachu-20140406/app-wui.js
 ===================================================================
---- chinachu.orig/app-wui.js	2014-03-16 12:11:52.867499879 +0900
-+++ chinachu/app-wui.js	2014-03-16 13:41:42.598226110 +0900
-@@ -29,6 +29,37 @@
- var os            = require('os');
- var zlib          = require('zlib');
+--- chinachu-20140406.orig/app-wui.js	2014-04-08 01:32:13.356464286 +0900
++++ chinachu-20140406/app-wui.js	2014-04-08 01:35:32.841440080 +0900
+@@ -40,6 +40,37 @@
+ var chinachu      = require('chinachu-common');
+ var S             = require('string');
  
 +// stdoutをフックしてログファイルに出力
 +var logFile = fs.createWriteStream(WUI_LOG_FILE, { encoding: 'utf8', flags   : 'a+' });
@@ -88,6 +88,6 @@ Index: chinachu/app-wui.js
 +	}, 0);
 +});
 +
- // ディレクトリチェック
+ // Directory Checking
  if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
- 	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
+ 	util.error('FATAL: Current working directory is invalid.');

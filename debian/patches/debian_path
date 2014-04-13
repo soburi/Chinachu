@@ -1,7 +1,7 @@
-Index: chinachu/app-cli.js
+Index: chinachu-20140406/app-cli.js
 ===================================================================
---- chinachu.orig/app-cli.js	2014-03-16 12:01:53.132525954 +0900
-+++ chinachu/app-cli.js	2014-03-16 12:01:53.124525914 +0900
+--- chinachu-20140406.orig/app-cli.js	2014-04-08 01:31:33.820268236 +0900
++++ chinachu-20140406/app-cli.js	2014-04-08 01:31:33.808268184 +0900
 @@ -5,12 +5,12 @@
   *  http://chinachu.akkar.in/
  **/
@@ -21,10 +21,10 @@ Index: chinachu/app-cli.js
  
  // 標準モジュールのロード
  var fs            = require('fs');
-Index: chinachu/app-operator.js
+Index: chinachu-20140406/app-operator.js
 ===================================================================
---- chinachu.orig/app-operator.js	2014-03-16 12:01:53.132525954 +0900
-+++ chinachu/app-operator.js	2014-03-16 12:01:53.124525914 +0900
+--- chinachu-20140406.orig/app-operator.js	2014-04-08 01:31:33.820268236 +0900
++++ chinachu-20140406/app-operator.js	2014-04-08 01:31:33.808268184 +0900
 @@ -8,10 +8,10 @@
  /*global gc */
  'use strict';
@@ -40,10 +40,10 @@ Index: chinachu/app-operator.js
  
  // 標準モジュールのロード
  var path          = require('path');
-Index: chinachu/app-wui.js
+Index: chinachu-20140406/app-wui.js
 ===================================================================
---- chinachu.orig/app-wui.js	2014-03-16 12:01:53.132525954 +0900
-+++ chinachu/app-wui.js	2014-03-16 12:01:56.000000000 +0900
+--- chinachu-20140406.orig/app-wui.js	2014-04-08 01:31:33.820268236 +0900
++++ chinachu-20140406/app-wui.js	2014-04-08 01:31:33.812268197 +0900
 @@ -8,15 +8,15 @@
  /*global gc */
  'use strict';
@@ -67,9 +67,9 @@ Index: chinachu/app-wui.js
 +var WUI_LOG_FILE        = '/var/lib/chinachu/log/wui';
 +var SCHEDULER_LOG_FILE  = '/var/lib/chinachu/log/scheduler';
  
- // 標準モジュールのロード
- var path          = require('path');
-@@ -814,8 +814,8 @@
+ // Load Config
+ var config = require(CONFIG_FILE);
+@@ -855,8 +855,8 @@
  	
  	var c = chinachu.createCountdown(2, chinachu.createTimeout(processChecker, 5000));
  	
@@ -80,7 +80,7 @@ Index: chinachu/app-wui.js
  			
  			if (err) { return c.tick(); }
  			
-@@ -843,8 +843,8 @@
+@@ -884,8 +884,8 @@
  		c.tick();
  	}
  	
@@ -91,10 +91,10 @@ Index: chinachu/app-wui.js
  			
  			if (err) { return c.tick(); }
  			
-Index: chinachu/app-scheduler.js
+Index: chinachu-20140406/app-scheduler.js
 ===================================================================
---- chinachu.orig/app-scheduler.js	2014-03-16 10:09:08.070979825 +0900
-+++ chinachu/app-scheduler.js	2014-03-16 12:02:42.032768437 +0900
+--- chinachu-20140406.orig/app-scheduler.js	2014-04-08 01:31:33.820268236 +0900
++++ chinachu-20140406/app-scheduler.js	2014-04-08 01:31:33.812268197 +0900
 @@ -8,10 +8,10 @@
  /*global gc */
  'use strict';

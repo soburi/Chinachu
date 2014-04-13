@@ -1,7 +1,7 @@
-Index: chinachu/api/script-program.vm.js
+Index: chinachu-20140406/api/script-program.vm.js
 ===================================================================
---- chinachu.orig/api/script-program.vm.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/api/script-program.vm.js	2014-04-02 00:24:47.904511737 +0900
+--- chinachu-20140406.orig/api/script-program.vm.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/api/script-program.vm.js	2014-04-08 01:31:23.116215164 +0900
 @@ -15,7 +15,7 @@
  				return response.error(409);
  			}
@@ -11,10 +11,10 @@ Index: chinachu/api/script-program.vm.js
  				if (err) return response.error(500);
  				
  				response.head(200);
-Index: chinachu/api/script-reserves-program-action.vm.js
+Index: chinachu-20140406/api/script-reserves-program-action.vm.js
 ===================================================================
---- chinachu.orig/api/script-reserves-program-action.vm.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/api/script-reserves-program-action.vm.js	2014-04-02 00:24:47.908511757 +0900
+--- chinachu-20140406.orig/api/script-reserves-program-action.vm.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/api/script-reserves-program-action.vm.js	2014-04-08 01:31:23.116215164 +0900
 @@ -10,10 +10,10 @@
  			
  			switch (request.param.action) {
@@ -28,10 +28,10 @@ Index: chinachu/api/script-reserves-program-action.vm.js
  					break;
  			}
  			
-Index: chinachu/api/script-reserves-program.vm.js
+Index: chinachu-20140406/api/script-reserves-program.vm.js
 ===================================================================
---- chinachu.orig/api/script-reserves-program.vm.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/api/script-reserves-program.vm.js	2014-04-02 00:24:47.908511757 +0900
+--- chinachu-20140406.orig/api/script-reserves-program.vm.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/api/script-reserves-program.vm.js	2014-04-08 01:31:23.120215176 +0900
 @@ -15,7 +15,7 @@
  				return response.error(409);
  			}
@@ -41,10 +41,10 @@ Index: chinachu/api/script-reserves-program.vm.js
  				if (err) return response.error(500);
  				
  				response.head(200);
-Index: chinachu/api/script-rules-rule-action.vm.js
+Index: chinachu-20140406/api/script-rules-rule-action.vm.js
 ===================================================================
---- chinachu.orig/api/script-rules-rule-action.vm.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/api/script-rules-rule-action.vm.js	2014-04-02 00:24:47.908511757 +0900
+--- chinachu-20140406.orig/api/script-rules-rule-action.vm.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/api/script-rules-rule-action.vm.js	2014-04-08 01:31:23.120215176 +0900
 @@ -10,10 +10,10 @@
  			
  			switch (request.param.action) {
@@ -58,10 +58,10 @@ Index: chinachu/api/script-rules-rule-action.vm.js
  					break;
  			}
  			
-Index: chinachu/api/script-rules-rule.vm.js
+Index: chinachu-20140406/api/script-rules-rule.vm.js
 ===================================================================
---- chinachu.orig/api/script-rules-rule.vm.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/api/script-rules-rule.vm.js	2014-04-02 00:27:11.673224647 +0900
+--- chinachu-20140406.orig/api/script-rules-rule.vm.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/api/script-rules-rule.vm.js	2014-04-08 01:31:23.120215176 +0900
 @@ -36,7 +36,7 @@
  					return response.error(400);
  				}
@@ -80,10 +80,10 @@ Index: chinachu/api/script-rules-rule.vm.js
  				if (err) return response.error(500);
  				
  				response.head(200);
-Index: chinachu/api/script-rules.vm.js
+Index: chinachu-20140406/api/script-rules.vm.js
 ===================================================================
---- chinachu.orig/api/script-rules.vm.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/api/script-rules.vm.js	2014-04-02 00:25:43.000784944 +0900
+--- chinachu-20140406.orig/api/script-rules.vm.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/api/script-rules.vm.js	2014-04-08 01:31:23.120215176 +0900
 @@ -32,7 +32,7 @@
  					return response.error(400);
  				}
@@ -93,10 +93,10 @@ Index: chinachu/api/script-rules.vm.js
  					if (err) return response.error(500);
  
  					response.head(200);
-Index: chinachu/app-operator.js
+Index: chinachu-20140406/app-operator.js
 ===================================================================
---- chinachu.orig/app-operator.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/app-operator.js	2014-04-02 00:24:47.908511757 +0900
+--- chinachu-20140406.orig/app-operator.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/app-operator.js	2014-04-08 01:31:23.120215176 +0900
 @@ -150,8 +150,8 @@
  	
  	var output, finalize;
@@ -121,11 +121,11 @@ Index: chinachu/app-operator.js
  		
  		// ログ用
  		output = fs.createWriteStream('./log/scheduler', { flags: 'a' });
-Index: chinachu/app-wui.js
+Index: chinachu-20140406/app-wui.js
 ===================================================================
---- chinachu.orig/app-wui.js	2014-04-02 00:24:47.916511796 +0900
-+++ chinachu/app-wui.js	2014-04-02 00:24:47.912511776 +0900
-@@ -503,6 +503,9 @@
+--- chinachu-20140406.orig/app-wui.js	2014-04-08 01:31:23.128215220 +0900
++++ chinachu-20140406/app-wui.js	2014-04-08 01:31:23.124215190 +0900
+@@ -523,6 +523,9 @@
  				setTimeout : setTimeout,
  				clearInterval: clearInterval,
  				clearTimeout : clearTimeout,
