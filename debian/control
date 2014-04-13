@@ -3,7 +3,7 @@ Section: video
 Priority: optional
 Maintainer: soburi <soburi@gmail.com>
 Build-Depends: debhelper (>= 9.0.0), quilt
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: http://chinachu.akkar.in/
 Vcs-Git: git://github.com/kanreisa/Chinachu.git
 Vcs-Browser: https://github.com/kanreisa/Chinachu.git
