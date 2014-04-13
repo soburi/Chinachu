@@ -21,11 +21,16 @@ set -e
 case "$1" in
     configure)
         if ! getent passwd chinachu > /dev/null ; then
-          echo 'Adding system-user for chinachu' 1>&2
-          adduser --system --group --quiet --home /var/lib/chinachu \
-            --disabled-login --force-badname chinachu
+                echo 'Adding system-user for chinachu' 1>&2
+                adduser --system --group --quiet --home /var/lib/chinachu \
+                --disabled-login --force-badname chinachu
         fi
-        addgroup chinachu video
+        
+        EGREP_CHINACHU="\<chinachu\>"
+        if [ "`getent group video | egrep $EGREP_CHINACHU`" = "" ] ; then
+                addgroup chinachu video
+        fi
+
         chown -R root:chinachu /etc/chinachu/ ; chmod -R 770 /etc/chinachu/config.json
 
         install -m 2755 -o chinachu -g chinachu -d /var/run/chinachu
