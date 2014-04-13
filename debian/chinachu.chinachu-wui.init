@@ -21,7 +21,7 @@ DAEMON_ARGS=""
 PIDFILE=/var/run/chinachu/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 USERNAME=chinachu
-HOMEDIR=`grep $USERNAME < /etc/passwd | sed 's/^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):[^:]*$/\1/'`
+HOMEDIR=`getent passwd $USERNAME | sed 's/^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:\([^:]*\):[^:]*$/\1/'`
 NODE_PATH=${HOMEDIR}/node_modules
 
 # Exit if the package is not installed
@@ -43,6 +43,8 @@ NODE_PATH=${HOMEDIR}/node_modules
 #
 do_start()
 {
+	install -o $USERNAME -g $USERNAME -m 755 -d /var/run/chinachu
+
 	# Return
 	#   0 if daemon has been started
 	#   1 if daemon was already running
