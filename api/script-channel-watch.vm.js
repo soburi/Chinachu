@@ -53,19 +53,19 @@ todo
 			return;
 		
 		case 'xspf':
-			response.setHeader('content-disposition', 'attachment; filename="' + program.id + '.xspf"');
+			response.setHeader('content-disposition', 'attachment; filename="' + channel.id + '.xspf"');
 			response.head(200);
 			
 			var ext    = request.query.ext || 'm2ts';
 			var prefix = request.query.prefix || '';
-			
+
 			var target = prefix + 'watch.' + ext  + url.parse(request.url).search;
 			
 			response.write('<?xml version="1.0" encoding="UTF-8"?>\n');
 			response.write('<playlist version="1" xmlns="http://xspf.org/ns/0/">\n');
 			response.write('<trackList>\n');
 			response.write('<track>\n<location>' + target.replace(/&/g, '&amp;') + '</location>\n');
-			response.write('<title>' + program.title + '</title>\n</track>\n');
+			response.write('<title>' + channel.name + '</title>\n</track>\n');
 			response.write('</trackList>\n');
 			response.write('</playlist>\n');
 			
@@ -184,6 +184,7 @@ todo
 			// var out = fs.openSync('/tmp/chinachu-live', 'a');
 			// var recpt1 = child_process.spawn('recpt1', ['--b25', '--strip', request.param.id, '-', '-']);
 			var recpt1 = child_process.spawn(tunerCommad.split(' ')[0], tunerCommad.replace(/[^ ]+ /, '').split(' '));
+			chinachu.writeTunerPid(tuner, recpt1.pid);
 			// util.log(['--b25', '--strip', request.param.id, '-', '/dev/stdout'].join(' '));
 			var avconv = child_process.spawn('avconv', args);
 			// util.log(args.join(' '));
