@@ -1,3 +1,10 @@
+chinachu (20140501-1ppa1) trusty; urgency=low
+
+  * 20140501-1ppa1 release
+  * Update debianize patches.
+
+ -- soburi <soburi@gmail.com>  Sat, 03 May 2014 00:48:12 +0900
+
 chinachu (20140406-1ppa1) trusty; urgency=low
 
   * 20140406-1ppa1 release

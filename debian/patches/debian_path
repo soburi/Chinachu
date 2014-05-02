@@ -1,7 +1,7 @@
-Index: chinachu-20140406/app-cli.js
+Index: chinachu-20140501/app-cli.js
 ===================================================================
---- chinachu-20140406.orig/app-cli.js	2014-04-08 01:31:33.820268236 +0900
-+++ chinachu-20140406/app-cli.js	2014-04-08 01:31:33.808268184 +0900
+--- chinachu-20140501.orig/app-cli.js	2014-05-03 00:44:51.704415114 +0900
++++ chinachu-20140501/app-cli.js	2014-05-03 00:44:51.696415074 +0900
 @@ -5,12 +5,12 @@
   *  http://chinachu.akkar.in/
  **/
@@ -21,10 +21,10 @@ Index: chinachu-20140406/app-cli.js
  
  // 標準モジュールのロード
  var fs            = require('fs');
-Index: chinachu-20140406/app-operator.js
+Index: chinachu-20140501/app-operator.js
 ===================================================================
---- chinachu-20140406.orig/app-operator.js	2014-04-08 01:31:33.820268236 +0900
-+++ chinachu-20140406/app-operator.js	2014-04-08 01:31:33.808268184 +0900
+--- chinachu-20140501.orig/app-operator.js	2014-05-03 00:44:51.704415114 +0900
++++ chinachu-20140501/app-operator.js	2014-05-03 00:44:51.696415074 +0900
 @@ -8,10 +8,10 @@
  /*global gc */
  'use strict';
@@ -40,10 +40,10 @@ Index: chinachu-20140406/app-operator.js
  
  // 標準モジュールのロード
  var path          = require('path');
-Index: chinachu-20140406/app-wui.js
+Index: chinachu-20140501/app-wui.js
 ===================================================================
---- chinachu-20140406.orig/app-wui.js	2014-04-08 01:31:33.820268236 +0900
-+++ chinachu-20140406/app-wui.js	2014-04-08 01:31:33.812268197 +0900
+--- chinachu-20140501.orig/app-wui.js	2014-05-03 00:44:51.704415114 +0900
++++ chinachu-20140501/app-wui.js	2014-05-03 00:44:51.696415074 +0900
 @@ -8,15 +8,15 @@
  /*global gc */
  'use strict';
@@ -91,13 +91,13 @@ Index: chinachu-20140406/app-wui.js
  			
  			if (err) { return c.tick(); }
  			
-Index: chinachu-20140406/app-scheduler.js
+Index: chinachu-20140501/app-scheduler.js
 ===================================================================
---- chinachu-20140406.orig/app-scheduler.js	2014-04-08 01:31:33.820268236 +0900
-+++ chinachu-20140406/app-scheduler.js	2014-04-08 01:31:33.812268197 +0900
-@@ -8,10 +8,10 @@
- /*global gc */
- 'use strict';
+--- chinachu-20140501.orig/app-scheduler.js	2014-05-03 00:44:51.704415114 +0900
++++ chinachu-20140501/app-scheduler.js	2014-05-03 00:44:51.700415094 +0900
+@@ -10,10 +10,10 @@
+ 
+ var PID_FILE = __dirname + '/data/scheduler.pid';
  
 -var CONFIG_FILE         = __dirname + '/config.json';
 -var RULES_FILE          = __dirname + '/rules.json';
