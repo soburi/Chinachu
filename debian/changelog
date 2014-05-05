@@ -1,3 +1,9 @@
+chinachu (20140501-1ppa2) trusty; urgency=low
+
+  * correct scheduler.pid file path.
+
+ -- soburi <soburi@gmail.com>  Tue, 06 May 2014 01:37:52 +0900
+
 chinachu (20140501-1ppa1) trusty; urgency=low
 
   * 20140501-1ppa1 release
