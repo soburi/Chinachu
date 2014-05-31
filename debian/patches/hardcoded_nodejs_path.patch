@@ -1,7 +1,7 @@
-Index: chinachu-20140501/api/script-program.vm.js
+Index: chinachu/api/script-program.vm.js
 ===================================================================
---- chinachu-20140501.orig/api/script-program.vm.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/api/script-program.vm.js	2014-05-03 00:44:39.644355311 +0900
+--- chinachu.orig/api/script-program.vm.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/api/script-program.vm.js	2014-05-31 11:13:47.419701414 +0900
 @@ -15,7 +15,7 @@
  				return response.error(409);
  			}
@@ -11,10 +11,10 @@ Index: chinachu-20140501/api/script-program.vm.js
  				if (err) return response.error(500);
  				
  				response.head(200);
-Index: chinachu-20140501/api/script-reserves-program-action.vm.js
+Index: chinachu/api/script-reserves-program-action.vm.js
 ===================================================================
---- chinachu-20140501.orig/api/script-reserves-program-action.vm.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/api/script-reserves-program-action.vm.js	2014-05-03 00:44:39.644355311 +0900
+--- chinachu.orig/api/script-reserves-program-action.vm.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/api/script-reserves-program-action.vm.js	2014-05-31 11:13:47.419701414 +0900
 @@ -10,10 +10,10 @@
  			
  			switch (request.param.action) {
@@ -28,10 +28,10 @@ Index: chinachu-20140501/api/script-reserves-program-action.vm.js
  					break;
  			}
  			
-Index: chinachu-20140501/api/script-reserves-program.vm.js
+Index: chinachu/api/script-reserves-program.vm.js
 ===================================================================
---- chinachu-20140501.orig/api/script-reserves-program.vm.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/api/script-reserves-program.vm.js	2014-05-03 00:44:39.648355331 +0900
+--- chinachu.orig/api/script-reserves-program.vm.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/api/script-reserves-program.vm.js	2014-05-31 11:13:47.423701434 +0900
 @@ -15,7 +15,7 @@
  				return response.error(409);
  			}
@@ -41,10 +41,10 @@ Index: chinachu-20140501/api/script-reserves-program.vm.js
  				if (err) return response.error(500);
  				
  				response.head(200);
-Index: chinachu-20140501/api/script-rules-rule-action.vm.js
+Index: chinachu/api/script-rules-rule-action.vm.js
 ===================================================================
---- chinachu-20140501.orig/api/script-rules-rule-action.vm.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/api/script-rules-rule-action.vm.js	2014-05-03 00:44:39.648355331 +0900
+--- chinachu.orig/api/script-rules-rule-action.vm.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/api/script-rules-rule-action.vm.js	2014-05-31 11:13:47.423701434 +0900
 @@ -10,10 +10,10 @@
  			
  			switch (request.param.action) {
@@ -58,10 +58,10 @@ Index: chinachu-20140501/api/script-rules-rule-action.vm.js
  					break;
  			}
  			
-Index: chinachu-20140501/api/script-rules-rule.vm.js
+Index: chinachu/api/script-rules-rule.vm.js
 ===================================================================
---- chinachu-20140501.orig/api/script-rules-rule.vm.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/api/script-rules-rule.vm.js	2014-05-03 00:44:39.648355331 +0900
+--- chinachu.orig/api/script-rules-rule.vm.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/api/script-rules-rule.vm.js	2014-05-31 11:13:47.423701434 +0900
 @@ -36,7 +36,7 @@
  					return response.error(400);
  				}
@@ -80,10 +80,10 @@ Index: chinachu-20140501/api/script-rules-rule.vm.js
  				if (err) return response.error(500);
  				
  				response.head(200);
-Index: chinachu-20140501/api/script-rules.vm.js
+Index: chinachu/api/script-rules.vm.js
 ===================================================================
---- chinachu-20140501.orig/api/script-rules.vm.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/api/script-rules.vm.js	2014-05-03 00:44:39.648355331 +0900
+--- chinachu.orig/api/script-rules.vm.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/api/script-rules.vm.js	2014-05-31 11:13:47.423701434 +0900
 @@ -32,7 +32,7 @@
  					return response.error(400);
  				}
@@ -93,11 +93,11 @@ Index: chinachu-20140501/api/script-rules.vm.js
  					if (err) return response.error(500);
  
  					response.head(200);
-Index: chinachu-20140501/app-operator.js
+Index: chinachu/app-operator.js
 ===================================================================
---- chinachu-20140501.orig/app-operator.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/app-operator.js	2014-05-03 00:44:39.648355331 +0900
-@@ -150,8 +150,8 @@
+--- chinachu.orig/app-operator.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/app-operator.js	2014-05-31 11:13:47.427701454 +0900
+@@ -171,8 +171,8 @@
  	
  	var output, finalize;
  	
@@ -108,23 +108,10 @@ Index: chinachu-20140501/app-operator.js
  	
  	// ログ用
  	output = fs.createWriteStream('./log/scheduler', { flags: 'a' });
-@@ -270,10 +270,10 @@
- 	epgInterval = setInterval(function () {
- 		var epgProc, output;
- 		
--		epgProc = child_process.spawn('node', [
-+		epgProc = child_process.spawn(process.execPath, [
- 			'app-scheduler.js', '-f', '-ch', program.channel.channel, '-l', recPath
- 		]);
--		util.log('SPAWN: node app-scheduler.js -f -ch ' + program.channel.channel + ' -l ' + recPath + ' (pid=' + epgProc.pid + ')');
-+		util.log('SPAWN: ' + process.execPath + ' app-scheduler.js -f -ch ' + program.channel.channel + ' -l ' + recPath + ' (pid=' + epgProc.pid + ')');
- 		
- 		// ログ用
- 		output = fs.createWriteStream('./log/scheduler', { flags: 'a' });
-Index: chinachu-20140501/app-wui.js
+Index: chinachu/app-wui.js
 ===================================================================
---- chinachu-20140501.orig/app-wui.js	2014-05-03 00:44:39.656355371 +0900
-+++ chinachu-20140501/app-wui.js	2014-05-03 00:44:39.652355351 +0900
+--- chinachu.orig/app-wui.js	2014-05-31 11:13:47.431701474 +0900
++++ chinachu/app-wui.js	2014-05-31 11:13:47.427701454 +0900
 @@ -523,6 +523,9 @@
  				setTimeout : setTimeout,
  				clearInterval: clearInterval,
