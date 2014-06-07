@@ -51,12 +51,18 @@ do_start()
 	#   2 if daemon could not be started
 	USER=$USERNAME HOME=$HOMEDIR NODE_PATH=$NODE_PATH \
 	start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE \
-		--quiet --test --chuid $USERNAME -d $HOMEDIR --exec /usr/bin/nodejs -- \
+		--quiet --test --chuid $USERNAME -d $HOMEDIR --exec /bin/bash -- \
+		-c "exec > >(exec tee -a /var/lib/chinachu/log/wui) ; \
+		    exec 2>&1 ; \
+		    exec /usr/bin/nodejs $NODE_ARGS $DAEMON_JS $DAEMON_ARGS" > /dev/null \
 		$NODE_ARGS $DAEMON_JS $DAEMON_ARGS > /dev/null \
 		|| return 1
 	USER=$USERNAME HOME=$HOMEDIR NODE_PATH=$NODE_PATH \
 	start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE \
-		--quiet --chuid $USERNAME -d $HOMEDIR --exec /usr/bin/nodejs -- \
+		--quiet --chuid $USERNAME -d $HOMEDIR --exec /bin/bash  -- \
+		-c "exec > >(exec tee -a /var/lib/chinachu/log/wui) ; \
+		    exec 2>&1 ; \
+		    exec /usr/bin/nodejs $NODE_ARGS $DAEMON_JS $DAEMON_ARGS" > /dev/null \
 		$NODE_ARGS $DAEMON_JS $DAEMON_ARGS > /dev/null \
 		|| return 2
 	# The above code will not work for interpreted scripts, use the next
