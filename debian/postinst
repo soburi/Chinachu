@@ -47,6 +47,7 @@ case "$1" in
         ( cd /var/lib/chinachu ; sudo -H -u chinachu /usr/bin/npm install )
 
         ln -f -s -T /usr/share/chinachu/node_modules/chinachu-common /var/lib/chinachu/node_modules/chinachu-common
+        ln -f -s -T /usr/bin/chinachu /var/lib/chinachu/chinachu
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
