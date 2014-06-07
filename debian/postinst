@@ -48,13 +48,13 @@ case "$1" in
                 ln -f -s -T $SRC /var/lib/chinachu/`basename $SRC`
         done
 
-        install -m 644 -o chinachu /usr/share/chinachu/package.json /var/lib/chinachu/
-        ( cd /var/lib/chinachu ; sudo -H -u chinachu /usr/bin/npm install )
-
+        ln -f -s -T /usr/share/chinachu/package.json /var/lib/chinachu/package.json
         ln -f -s -T /usr/share/chinachu/node_modules/chinachu-common /var/lib/chinachu/node_modules/chinachu-common
         ln -f -s -T /usr/bin/chinachu /var/lib/chinachu/chinachu
         ln -f -s -T /usr/bin/nodejs   /var/lib/chinachu/usr/bin/node
         ln -f -s -T /var/log/chinachu /var/lib/chinachu/log
+        ( cd /var/lib/chinachu ; sudo -H -u chinachu /usr/bin/npm install )
+
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
