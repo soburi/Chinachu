@@ -1,12 +1,12 @@
-Index: chinachu-20140406/app-operator.js
+Index: chinachu/app-operator.js
 ===================================================================
---- chinachu-20140406.orig/app-operator.js	2014-04-08 01:32:13.356464286 +0900
-+++ chinachu-20140406/app-operator.js	2014-04-08 01:32:13.348464246 +0900
+--- chinachu.orig/app-operator.js	2014-06-07 19:04:06.846341577 +0900
++++ chinachu/app-operator.js	2014-06-07 19:07:39.267394917 +0900
 @@ -12,6 +12,7 @@
  var RESERVES_DATA_FILE  = '/var/lib/chinachu/data/reserves.json';
  var RECORDING_DATA_FILE = '/var/lib/chinachu/data/recording.json';
  var RECORDED_DATA_FILE  = '/var/lib/chinachu/data/recorded.json';
-+var OPERATOR_LOG_FILE   = '/var/lib/chinachu/log/operator';
++var OPERATOR_LOG_FILE   = '/var/log/chinachu/operator';
  
  // 標準モジュールのロード
  var path          = require('path');
@@ -49,10 +49,17 @@ Index: chinachu-20140406/app-operator.js
  // ディレクトリチェック
  if (!fs.existsSync('./data/') || !fs.existsSync('./log/') || !fs.existsSync('./web/')) {
  	util.error('必要なディレクトリが存在しないか、カレントワーキングディレクトリが不正です。');
-Index: chinachu-20140406/app-wui.js
+@@ -525,4 +558,4 @@
+ //
+ if (typeof gc !== 'undefined') {
+ 	setInterval(gc, 1000 * 60 * 2);
+-}
+\ No newline at end of file
++}
+Index: chinachu/app-wui.js
 ===================================================================
---- chinachu-20140406.orig/app-wui.js	2014-04-08 01:32:13.356464286 +0900
-+++ chinachu-20140406/app-wui.js	2014-04-08 01:35:32.841440080 +0900
+--- chinachu.orig/app-wui.js	2014-06-07 19:04:06.846341577 +0900
++++ chinachu/app-wui.js	2014-06-07 19:04:06.838341536 +0900
 @@ -40,6 +40,37 @@
  var chinachu      = require('chinachu-common');
  var S             = require('string');

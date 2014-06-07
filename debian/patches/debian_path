@@ -1,7 +1,7 @@
-Index: chinachu/app-cli.js
+Index: chinachu-20140530/app-cli.js
 ===================================================================
---- chinachu.orig/app-cli.js	2014-05-06 01:52:55.853970710 +0900
-+++ chinachu/app-cli.js	2014-05-06 01:52:55.845970670 +0900
+--- chinachu-20140530.orig/app-cli.js	2014-06-07 16:41:08.459803650 +0900
++++ chinachu-20140530/app-cli.js	2014-06-07 16:41:08.451803616 +0900
 @@ -5,12 +5,12 @@
   *  http://chinachu.akkar.in/
  **/
@@ -21,10 +21,10 @@ Index: chinachu/app-cli.js
  
  // 標準モジュールのロード
  var fs            = require('fs');
-Index: chinachu/app-operator.js
+Index: chinachu-20140530/app-operator.js
 ===================================================================
---- chinachu.orig/app-operator.js	2014-05-06 01:52:55.853970710 +0900
-+++ chinachu/app-operator.js	2014-05-06 01:52:55.845970670 +0900
+--- chinachu-20140530.orig/app-operator.js	2014-06-07 16:41:08.459803650 +0900
++++ chinachu-20140530/app-operator.js	2014-06-07 16:41:08.451803616 +0900
 @@ -8,10 +8,10 @@
  /*global gc */
  'use strict';
@@ -40,10 +40,10 @@ Index: chinachu/app-operator.js
  
  // 標準モジュールのロード
  var path          = require('path');
-Index: chinachu/app-wui.js
+Index: chinachu-20140530/app-wui.js
 ===================================================================
---- chinachu.orig/app-wui.js	2014-05-06 01:52:55.853970710 +0900
-+++ chinachu/app-wui.js	2014-05-06 01:52:55.845970670 +0900
+--- chinachu-20140530.orig/app-wui.js	2014-06-07 16:41:08.459803650 +0900
++++ chinachu-20140530/app-wui.js	2014-06-07 16:41:28.347902270 +0900
 @@ -8,15 +8,15 @@
  /*global gc */
  'use strict';
@@ -63,9 +63,9 @@ Index: chinachu/app-wui.js
 +var SCHEDULE_DATA_FILE  = '/var/lib/chinachu/data/schedule.json';
 +var RECORDING_DATA_FILE = '/var/lib/chinachu/data/recording.json';
 +var RECORDED_DATA_FILE  = '/var/lib/chinachu/data/recorded.json';
-+var OPERATOR_LOG_FILE   = '/var/lib/chinachu/log/operator';
-+var WUI_LOG_FILE        = '/var/lib/chinachu/log/wui';
-+var SCHEDULER_LOG_FILE  = '/var/lib/chinachu/log/scheduler';
++var OPERATOR_LOG_FILE   = '/var/log/chinachu/operator';
++var WUI_LOG_FILE        = '/var/log/chinachu/wui';
++var SCHEDULER_LOG_FILE  = '/var/log/chinachu/scheduler';
  
  // Load Config
  var config = require(CONFIG_FILE);
@@ -91,10 +91,10 @@ Index: chinachu/app-wui.js
  			
  			if (err) { return c.tick(); }
  			
-Index: chinachu/app-scheduler.js
+Index: chinachu-20140530/app-scheduler.js
 ===================================================================
---- chinachu.orig/app-scheduler.js	2014-05-06 01:52:55.853970710 +0900
-+++ chinachu/app-scheduler.js	2014-05-06 01:54:24.450410036 +0900
+--- chinachu-20140530.orig/app-scheduler.js	2014-06-07 16:41:08.459803650 +0900
++++ chinachu-20140530/app-scheduler.js	2014-06-07 16:41:08.455803631 +0900
 @@ -8,12 +8,12 @@
  /*global gc */
  'use strict';
