@@ -1,4 +1,3 @@
 change_node_exec_path.patch
-hardcoded_nodejs_path.patch
 disable_installer_command.patch
 debian_path

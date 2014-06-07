@@ -40,6 +40,7 @@ case "$1" in
         install -m 2755 -o chinachu -g chinachu -d /var/run/chinachu
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu/data
+        install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu/usr/bin
         install -m 2755 -o chinachu -g chinachu -d /var/log/chinachu
 
         for SRC in `find /usr/share/chinachu/ -maxdepth 1 -mindepth 1 -name 'node_modules'  -prune -o -print`
@@ -52,6 +53,7 @@ case "$1" in
 
         ln -f -s -T /usr/share/chinachu/node_modules/chinachu-common /var/lib/chinachu/node_modules/chinachu-common
         ln -f -s -T /usr/bin/chinachu /var/lib/chinachu/chinachu
+        ln -f -s -T /usr/bin/nodejs   /var/lib/chinachu/usr/bin/node
         ln -f -s -T /var/log/chinachu /var/lib/chinachu/log
     ;;
 

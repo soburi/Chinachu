@@ -1,28 +1,21 @@
 Index: chinachu/chinachu
 ===================================================================
---- chinachu.orig/chinachu	2014-04-05 14:16:10.953171810 +0900
-+++ chinachu/chinachu	2014-04-05 14:16:31.113271778 +0900
-@@ -15,8 +15,13 @@
- 
+--- chinachu.orig/chinachu	2014-06-07 20:27:08.683045171 +0900
++++ chinachu/chinachu	2014-06-07 20:33:24.468908594 +0900
+@@ -16,7 +16,7 @@
  shopt -s extglob
  
-+if [ "$CHINACHU_CMD_DEBUG" != "" ]; then
-+  set $CHINACHU_CMD_DEBUG
-+fi
-+
  # variables
 -NODE_VER=0.10.26
-+NODE_BIN='/usr/bin/nodejs'
 +NODE_VER=`/usr/bin/nodejs --version | sed 's/^v//'`
  
  main () {
    local SELF_PATH DIR SYM
-@@ -40,14 +45,16 @@
+@@ -40,10 +40,10 @@
    done
    
    # path
 -  CHINACHU_DIR=$(dirname -- "$SELF_PATH")
-+  CHINACHU_INSTALLED_DIR=/usr/share/chinachu
 +  CHINACHU_DIR=/var/lib/chinachu
    NAVE_DIR=${CHINACHU_DIR}/.nave
 -  NODE_PATH=${NAVE_DIR}/installed/${NODE_VER}/bin/node
@@ -32,154 +25,3 @@ Index: chinachu/chinachu
    USR_DIR=${CHINACHU_DIR}/usr
    
    export PATH=$USR_DIR/bin:${NAVE_DIR}/installed/${NODE_VER}/bin:$PATH
-   export LD_LIBRARY_PATH=$USR_DIR/lib:$LD_LIBRARY_PATH
-+  export NODE_PATH
-   
-   cd $CHINACHU_DIR
-   
-@@ -691,7 +698,7 @@
-   ensure_dir log
-   ensure_dir data
-   
--  node --expose_gc app-${name}.js > /dev/stdout 2>&1 | tee -a ./log/${name} && return 0
-+  $NODE_BIN --expose_gc app-${name}.js > /dev/stdout 2>&1 | tee -a ./log/${name} && return 0
- }
- 
- chinachu_service_help () {
-@@ -724,11 +731,11 @@
- }
- 
- chinachu_update () {
--  node app-scheduler.js "$@" > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
-+  $NODE_BIN app-scheduler.js "$@" > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
- }
- 
- chinachu_search () {
--  node app-cli.js -mode search "$@" && return 0
-+  $NODE_BIN app-cli.js -mode search "$@" && return 0
- }
- 
- chinachu_reserve () {
-@@ -736,14 +743,14 @@
-     fail "Usage: reserve <pgid>"
-   fi
-   
--  node app-cli.js -mode reserve -id "$1" || fail "couldn't reserve $1"
-+  $NODE_BIN app-cli.js -mode reserve -id "$1" || fail "couldn't reserve $1"
-   
-   while [ 1 ]; do
-     echo -n "Run a scheduler [Y/n]? "
-     read line
-     case $line in
-       [yY])
--        node app-scheduler.js > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
-+        $NODE_BIN app-scheduler.js > /dev/stdout 2>&1 | tee -a ./log/scheduler && return 0
-         ;;
-       [nN])
-         echo "Ok." && return 0
-@@ -757,7 +764,7 @@
-     fail "Usage: unreserve <pgid>"
-   fi
-   
--  node app-cli.js -mode unreserve -id "$1" || fail "couldn't unreserve $1"
-+  $NODE_BIN app-cli.js -mode unreserve -id "$1" || fail "couldn't unreserve $1"
- }
- 
- chinachu_skip () {
-@@ -765,7 +772,7 @@
-     fail "Usage: skip <pgid>"
-   fi
- 
--  node app-cli.js -mode skip -id "$1" || fail "couldn't skip $1"
-+  $NODE_BIN app-cli.js -mode skip -id "$1" || fail "couldn't skip $1"
- }
- 
- chinachu_unskip () {
-@@ -773,7 +780,7 @@
-     fail "Usage: unskip <pgid>"
-   fi
- 
--  node app-cli.js -mode unskip -id "$1" || fail "couldn't skip $1"
-+  $NODE_BIN app-cli.js -mode unskip -id "$1" || fail "couldn't skip $1"
- }
- 
- chinachu_stop () {
-@@ -781,11 +788,11 @@
-     fail "Usage: stop <pgid>"
-   fi
-   
--  node app-cli.js -mode stop -id "$1" || fail "couldn't stop $1"
-+  $NODE_BIN app-cli.js -mode stop -id "$1" || fail "couldn't stop $1"
- }
- 
- chinachu_rule () {
--  node app-cli.js -mode rule "$@" && return 0
-+  $NODE_BIN app-cli.js -mode rule "$@" && return 0
- }
- 
- chinachu_enrule () {
-@@ -793,7 +800,7 @@
-     fail "Usage: enrule <ruleid>"
-   fi
-   
--  node app-cli.js -mode rule -n "$1" --enable && return 0
-+  $NODE_BIN app-cli.js -mode rule -n "$1" --enable && return 0
- }
- 
- chinachu_disrule () {
-@@ -801,7 +808,7 @@
-     fail "Usage: disrule <ruleid>"
-   fi
-   
--  node app-cli.js -mode rule -n "$1" --disable && return 0
-+  $NODE_BIN app-cli.js -mode rule -n "$1" --disable && return 0
- }
- 
- chinachu_rmrule () {
-@@ -809,23 +816,23 @@
-     fail "Usage: rmrule <ruleid>"
-   fi
-   
--  node app-cli.js -mode rule -n "$1" --remove && return 0
-+  $NODE_BIN app-cli.js -mode rule -n "$1" --remove && return 0
- }
- 
- chinachu_rules () {
--  node app-cli.js -mode rules "$@" && return 0
-+  $NODE_BIN app-cli.js -mode rules "$@" && return 0
- }
- 
- chinachu_reserves () {
--  node app-cli.js -mode reserves "$@" && return 0
-+  $NODE_BIN app-cli.js -mode reserves "$@" && return 0
- }
- 
- chinachu_recording () {
--  node app-cli.js -mode recording "$@" && return 0
-+  $NODE_BIN app-cli.js -mode recording "$@" && return 0
- }
- 
- chinachu_recorded () {
--  node app-cli.js -mode recorded "$@" && return 0
-+  $NODE_BIN app-cli.js -mode recorded "$@" && return 0
- }
- 
- chinachu_cleanup () {
-@@ -836,7 +843,7 @@
-     read line
-     case $line in
-       [yY])
--        node app-cli.js -mode cleanup "$@" && return 0
-+        $NODE_BIN app-cli.js -mode cleanup "$@" && return 0
-         ;;
-       [nN])
-         echo "Abort." && return 0
-@@ -864,7 +871,7 @@
- }
- 
- chinachu_ircbot () {
--  node app-cli.js -mode ircbot "$@" && return 0
-+  $NODE_BIN app-cli.js -mode ircbot "$@" && return 0
- }
- 
- chinachu_test () {

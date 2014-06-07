@@ -1,7 +1,7 @@
-Index: chinachu-20140530/app-cli.js
+Index: chinachu/app-cli.js
 ===================================================================
---- chinachu-20140530.orig/app-cli.js	2014-06-07 16:41:08.459803650 +0900
-+++ chinachu-20140530/app-cli.js	2014-06-07 16:41:08.451803616 +0900
+--- chinachu.orig/app-cli.js	2014-06-07 21:09:34.847670913 +0900
++++ chinachu/app-cli.js	2014-06-07 21:09:34.839670896 +0900
 @@ -5,12 +5,12 @@
   *  http://chinachu.akkar.in/
  **/
@@ -21,10 +21,10 @@ Index: chinachu-20140530/app-cli.js
  
  // 標準モジュールのロード
  var fs            = require('fs');
-Index: chinachu-20140530/app-operator.js
+Index: chinachu/app-operator.js
 ===================================================================
---- chinachu-20140530.orig/app-operator.js	2014-06-07 16:41:08.459803650 +0900
-+++ chinachu-20140530/app-operator.js	2014-06-07 16:41:08.451803616 +0900
+--- chinachu.orig/app-operator.js	2014-06-07 21:09:34.847670913 +0900
++++ chinachu/app-operator.js	2014-06-07 21:09:34.839670896 +0900
 @@ -8,10 +8,10 @@
  /*global gc */
  'use strict';
@@ -40,10 +40,10 @@ Index: chinachu-20140530/app-operator.js
  
  // 標準モジュールのロード
  var path          = require('path');
-Index: chinachu-20140530/app-wui.js
+Index: chinachu/app-wui.js
 ===================================================================
---- chinachu-20140530.orig/app-wui.js	2014-06-07 16:41:08.459803650 +0900
-+++ chinachu-20140530/app-wui.js	2014-06-07 16:41:28.347902270 +0900
+--- chinachu.orig/app-wui.js	2014-06-07 21:09:34.847670913 +0900
++++ chinachu/app-wui.js	2014-06-07 21:09:34.839670896 +0900
 @@ -8,15 +8,15 @@
  /*global gc */
  'use strict';
@@ -69,7 +69,7 @@ Index: chinachu-20140530/app-wui.js
  
  // Load Config
  var config = require(CONFIG_FILE);
-@@ -855,8 +855,8 @@
+@@ -852,8 +852,8 @@
  	
  	var c = chinachu.createCountdown(2, chinachu.createTimeout(processChecker, 5000));
  	
@@ -80,7 +80,7 @@ Index: chinachu-20140530/app-wui.js
  			
  			if (err) { return c.tick(); }
  			
-@@ -884,8 +884,8 @@
+@@ -881,8 +881,8 @@
  		c.tick();
  	}
  	
@@ -91,10 +91,10 @@ Index: chinachu-20140530/app-wui.js
  			
  			if (err) { return c.tick(); }
  			
-Index: chinachu-20140530/app-scheduler.js
+Index: chinachu/app-scheduler.js
 ===================================================================
---- chinachu-20140530.orig/app-scheduler.js	2014-06-07 16:41:08.459803650 +0900
-+++ chinachu-20140530/app-scheduler.js	2014-06-07 16:41:08.455803631 +0900
+--- chinachu.orig/app-scheduler.js	2014-06-07 21:09:34.847670913 +0900
++++ chinachu/app-scheduler.js	2014-06-07 21:09:34.839670896 +0900
 @@ -8,12 +8,12 @@
  /*global gc */
  'use strict';

@@ -12,7 +12,7 @@
 # Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PATH=/var/lib/chinachu/usr/bin:/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Chinachu operator daemon"
 NAME=chinachu-operator
 NODE_ARGS="--expose_gc"
