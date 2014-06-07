@@ -1,7 +1,7 @@
 Index: chinachu/app-cli.js
 ===================================================================
---- chinachu.orig/app-cli.js	2014-06-07 21:09:34.847670913 +0900
-+++ chinachu/app-cli.js	2014-06-07 21:09:34.839670896 +0900
+--- chinachu.orig/app-cli.js	2014-06-07 20:55:03.927352263 +0900
++++ chinachu/app-cli.js	2014-06-07 20:55:03.915352200 +0900
 @@ -5,12 +5,12 @@
   *  http://chinachu.akkar.in/
  **/
@@ -23,8 +23,8 @@ Index: chinachu/app-cli.js
  var fs            = require('fs');
 Index: chinachu/app-operator.js
 ===================================================================
---- chinachu.orig/app-operator.js	2014-06-07 21:09:34.847670913 +0900
-+++ chinachu/app-operator.js	2014-06-07 21:09:34.839670896 +0900
+--- chinachu.orig/app-operator.js	2014-06-07 20:55:03.927352263 +0900
++++ chinachu/app-operator.js	2014-06-07 20:55:03.919352223 +0900
 @@ -8,10 +8,10 @@
  /*global gc */
  'use strict';
@@ -42,8 +42,8 @@ Index: chinachu/app-operator.js
  var path          = require('path');
 Index: chinachu/app-wui.js
 ===================================================================
---- chinachu.orig/app-wui.js	2014-06-07 21:09:34.847670913 +0900
-+++ chinachu/app-wui.js	2014-06-07 21:09:34.839670896 +0900
+--- chinachu.orig/app-wui.js	2014-06-07 20:55:03.927352263 +0900
++++ chinachu/app-wui.js	2014-06-07 20:55:03.919352223 +0900
 @@ -8,15 +8,15 @@
  /*global gc */
  'use strict';
@@ -93,8 +93,8 @@ Index: chinachu/app-wui.js
  			
 Index: chinachu/app-scheduler.js
 ===================================================================
---- chinachu.orig/app-scheduler.js	2014-06-07 21:09:34.847670913 +0900
-+++ chinachu/app-scheduler.js	2014-06-07 21:09:34.839670896 +0900
+--- chinachu.orig/app-scheduler.js	2014-06-07 20:55:03.927352263 +0900
++++ chinachu/app-scheduler.js	2014-06-07 20:55:03.919352223 +0900
 @@ -8,12 +8,12 @@
  /*global gc */
  'use strict';
@@ -113,3 +113,30 @@ Index: chinachu/app-scheduler.js
  
  // 標準モジュールのロード
  var path          = require('path');
+Index: chinachu/chinachu
+===================================================================
+--- chinachu.orig/chinachu	2014-06-07 20:55:03.927352263 +0900
++++ chinachu/chinachu	2014-06-07 20:55:03.919352223 +0900
+@@ -16,7 +16,7 @@
+ shopt -s extglob
+ 
+ # variables
+-NODE_VER=0.10.26
++NODE_VER=`/usr/bin/nodejs --version | sed 's/^v//'`
+ 
+ main () {
+   local SELF_PATH DIR SYM
+@@ -40,10 +40,10 @@
+   done
+   
+   # path
+-  CHINACHU_DIR=$(dirname -- "$SELF_PATH")
++  CHINACHU_DIR=/var/lib/chinachu
+   NAVE_DIR=${CHINACHU_DIR}/.nave
+-  NODE_PATH=${NAVE_DIR}/installed/${NODE_VER}/bin/node
+-  NPM_PATH=${NAVE_DIR}/installed/${NODE_VER}/bin/npm
++  NODE_PATH=${CHINACHU_DIR}/node_modules/
++  NPM_PATH=/usr/bin/npm
+   USR_DIR=${CHINACHU_DIR}/usr
+   
+   export PATH=$USR_DIR/bin:${NAVE_DIR}/installed/${NODE_VER}/bin:$PATH

@@ -1,3 +1,2 @@
-change_node_exec_path.patch
-disable_installer_command.patch
-debian_path
+fit-to-debian-folder.patch
+disable_chinachu_subcommands.patch
