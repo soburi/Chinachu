@@ -7,7 +7,7 @@ Index: chinachu/chinachu
    shift
    case $cmd in
 -    installer | updater | service | update | search | \
-+    service | update | search | \
++    update | search | \
      reserve | unreserve | skip | unskip | stop | \
      rule | enrule | disrule | rmrule | \
      rules | reserves | recording | recorded | \
@@ -15,7 +15,7 @@ Index: chinachu/chinachu
 +    cleanup | unlock | ircbot )
        cmd="chinachu_$cmd"
        ;;
-+    installer | updater | test )
++    installer | updater | service | test )
 +      echo "Disable $cmd by debian package."
 +      return 0;
 +      ;;
