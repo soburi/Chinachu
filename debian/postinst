@@ -40,6 +40,7 @@ case "$1" in
         install -m 2755 -o chinachu -g chinachu -d /var/run/chinachu
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu/data
+        install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu/node_modules
         install -m 2755 -o chinachu -g chinachu -d /var/lib/chinachu/usr/bin
         install -m 2755 -o chinachu -g chinachu -d /var/log/chinachu
 

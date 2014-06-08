@@ -41,7 +41,7 @@ case "$1" in
 
         rm -rf /var/run/chinachu/
 
-        rm -f `find /var/lib/chinachu/ -maxdepth 1 -type l`
+        rm -f `find /var/lib/chinachu/ -type l`
         rm -rf /var/lib/chinachu/.cache/
         rm -rf /var/lib/chinachu/.npm/
         rm -rf /var/lib/chinachu/node_modules/
