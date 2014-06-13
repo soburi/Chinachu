@@ -52,7 +52,7 @@ do_start()
 	USER=$USERNAME HOME=$HOMEDIR NODE_PATH=$NODE_PATH \
 	start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE \
 		--quiet --test --chuid $USERNAME -d $HOMEDIR --exec /bin/bash -- \
-		-c "exec > >(exec tee -a /var/lib/chinachu/log/wui) ; \
+		-c "exec > >(exec tee -a /var/log/chinachu/wui) ; \
 		    exec 2>&1 ; \
 		    exec /usr/bin/nodejs $NODE_ARGS $DAEMON_JS $DAEMON_ARGS" > /dev/null \
 		$NODE_ARGS $DAEMON_JS $DAEMON_ARGS > /dev/null \
@@ -60,7 +60,7 @@ do_start()
 	USER=$USERNAME HOME=$HOMEDIR NODE_PATH=$NODE_PATH \
 	start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE \
 		--quiet --chuid $USERNAME -d $HOMEDIR --exec /bin/bash  -- \
-		-c "exec > >(exec tee -a /var/lib/chinachu/log/wui) ; \
+		-c "exec > >(exec tee -a /var/log/chinachu/wui) ; \
 		    exec 2>&1 ; \
 		    exec /usr/bin/nodejs $NODE_ARGS $DAEMON_JS $DAEMON_ARGS" > /dev/null \
 		$NODE_ARGS $DAEMON_JS $DAEMON_ARGS > /dev/null \
