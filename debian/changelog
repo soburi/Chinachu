@@ -1,3 +1,10 @@
+chinachu (20140612-1ppa1) trusty; urgency=low
+
+  * 20140612-1ppa1 release
+  * Put log int /var/log/chinachu. (correcting.)
+
+ -- soburi <soburi@gmail.com>  Sat, 14 Jun 2014 01:09:57 +0900
+
 chinachu (20140530-1ppa3) trusty; urgency=medium
 
   * 20140530-1ppa3 release
