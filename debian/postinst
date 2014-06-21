@@ -56,6 +56,16 @@ case "$1" in
         ln -f -s -T /var/log/chinachu /var/lib/chinachu/log
         ( cd /var/lib/chinachu ; sudo -H -u chinachu /usr/bin/npm install )
 
+        # work around for old version contents replacing.
+        if [ ! -L /usr/share/chinachu/web/lib/flagrate -a -d /usr/share/chinachu/web/lib/flagrate ] ; then
+                rm -r -f /usr/share/chinachu/web/lib/flagrate
+                ln -s ../../../javascript/flagrate /usr/share/chinachu/web/lib/flagrate
+        fi
+        if [ ! -L /usr/share/chinachu/web/lib/ace -a -d /usr/share/chinachu/web/lib/ace ] ; then
+                rm -r -f /usr/share/chinachu/web/lib/ace
+                ln -s ../../../javascript/ace /usr/share/chinachu/web/lib/ace
+        fi
+
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

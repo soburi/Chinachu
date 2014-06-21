@@ -8,15 +8,8 @@ export DH_VERBOSE=1
 
 override_dh_install:
 	dh_install -Xprototype.js \
-		   -Xweb/lib/ace/src/ \
-		   -Xweb/lib/ace/src-min/ \
-		   -Xweb/lib/ace/src-noconflict/ \
-		   -Xweb/lib/ace/demo/ \
-		   -Xweb/lib/ace/kitchen-sink/ \
-		   -Xweb/lib/ace/kitchen-sink.html \
-		   -Xweb/lib/ace/kitchen-sink-req.html \
-		   -Xweb/lib/ace/editor.html \
-		   -Xweb/lib/ace/scrollable-page.html
+		   -Xweb/lib/ace \
+		   -Xweb/lib/flagrate
 	mkdir -p -m 744 $(basedir)/etc/chinachu/
 	install -m 600 debian/config.maintainer.json $(basedir)/etc/chinachu/config.json
 #	ln -s /usr/share/chinachu/web/lib/ace/LICENSE $(basedir)/usr/share/doc/chinachu/LICENSE.ace

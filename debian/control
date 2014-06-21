@@ -10,7 +10,7 @@ Vcs-Browser: https://github.com/kanreisa/Chinachu.git
 
 Package: chinachu
 Architecture: all
-Depends: ${misc:Depends}, adduser, nodejs, npm, libjs-prototype, libav-tools, procps
+Depends: ${misc:Depends}, adduser, nodejs, npm, libjs-prototype, libjs-flagrate, libjs-ace, libav-tools, procps
 Suggests: recpt1, epgdump
 Description: World most cute TV recording system.
  Chinachu is the EPG recording reservation management system
