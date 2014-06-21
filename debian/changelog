@@ -1,3 +1,10 @@
+chinachu (20140612-1ppa2) trusty; urgency=medium
+
+  * 20140612-1ppa2 release
+  * JS libraries splitting into separate package.
+
+ -- soburi <soburi@gmail.com>  Sat, 21 Jun 2014 11:22:15 +0900
+
 chinachu (20140612-1ppa1) trusty; urgency=low
 
   * 20140612-1ppa1 release
